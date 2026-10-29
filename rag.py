@@ -1,8 +1,10 @@
-"""Answer questions about the NCA Essential Cybersecurity Controls (ECC) with retrieval + Claude.
+"""Answer questions about the NCA Essential Cybersecurity Controls (ECC) with retrieval + an LLM.
 
 Flow: detect the question's language -> embed it with bge-m3 -> take the top-5 most similar
-controls in that language -> send them to Claude with strict instructions to answer only from
+controls in that language -> send them to DeepSeek with strict instructions to answer only from
 them and cite control IDs, or refuse.
+
+DeepSeek's API is OpenAI-compatible, so we call it with the `openai` SDK pointed at DeepSeek's URL.
 
 Usage:
     python rag.py "Who must approve the cybersecurity strategy?"
@@ -20,13 +22,15 @@ import numpy as np
 from ingest import INDEX_DIR, get_model
 
 TOP_K = 5
-MODEL = os.environ.get("CLAUDE_MODEL", "claude-sonnet-5-5")
+MODEL = os.environ.get("DEEPSEEK_MODEL", "deepseek-flash")
+BASE_URL = "https://api.deepseek.com"
 
-# USD per million tokens (input, output). Update if you change CLAUDE_MODEL.
+# USD per 1M tokens at DeepSeek's PEAK rates (off-peak is half), so estimates are an upper bound.
+# Source: https://api-docs.deepseek.com/quick_start/pricing/ (checked 2026-10-29).
+# "hit" = input tokens served from DeepSeek's automatic prompt cache, "miss" = the rest.
 PRICES = {
-    "claude-sonnet-5-5": (2.00, 10.00),
-    "claude-opus-5-5": (4.00, 20.00),
-    "claude-haiku-5-5": (0.10, 0.50),
+    "deepseek-flash": {"hit": 0.006, "miss": 0.30, "out": 1.20},
+    "deepseek-v4-pro": {"hit": 0.044, "miss": 1.32, "out": 3.96},
 }
 
 CONTROL_ID = re.compile(r"\b\d{1,2}-\d{1,2}-\d{1,2}(?:-\d{1,2})?\b")
@@ -101,11 +105,20 @@ def format_controls(controls):
     )
 
 
-def cost_usd(model, input_tokens, output_tokens):
-    price_in, price_out = PRICES.get(model, (None, None))
-    if price_in is None:
+def cost_usd(model, cache_hit_tokens, cache_miss_tokens, output_tokens):
+    price = PRICES.get(model)
+    if price is None:
         return None
-    return (input_tokens * price_in + output_tokens * price_out) / 1_000_000
+    return (cache_hit_tokens * price["hit"] + cache_miss_tokens * price["miss"]
+            + output_tokens * price["out"]) / 1_000_000
+
+
+def make_client():
+    from openai import OpenAI
+    api_key = os.environ.get("DEEPSEEK_API_KEY")
+    if not api_key:
+        raise RuntimeError("DEEPSEEK_API_KEY is not set")
+    return OpenAI(api_key=api_key, base_url=BASE_URL)
 
 
 def build_user_message(question, lang, controls):
@@ -127,27 +140,35 @@ def cited_ids(answer, controls):
 
 
 def ask(question, client=None):
-    import anthropic
-    client = client or anthropic.Anthropic()   # reads ANTHROPIC_API_KEY from the environment
+    client = client or make_client()
     lang = detect_language(question)
     controls = retrieve(question, lang=lang)
 
-    response = client.messages.create(
+    response = client.chat.completions.create(
         model=MODEL,
-        max_tokens=2000,
-        system=SYSTEM_PROMPT,
-        output_config={"effort": "low"},       # short factual answers don't need deep reasoning
-        messages=[{"role": "user", "content": build_user_message(question, lang, controls)}],
+        max_tokens=1000,
+        temperature=0,                         # most deterministic output: better for answers and evals
+        messages=[
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": build_user_message(question, lang, controls)},
+        ],
+        # DeepSeek "thinks" by default; short answers from given text don't need it, and it costs tokens.
+        extra_body={"thinking": {"type": "disabled"}},
     )
-    if response.stop_reason == "refusal":      # the API's safety filter declined (not the same as NOT COVERED)
+    choice = response.choices[0]
+    if choice.finish_reason == "content_filter":   # the API's own filter blocked it (not the same as NOT COVERED)
         answer = "(The model declined to answer this request.)"
     else:
-        answer = "".join(b.text for b in response.content if b.type == "text").strip()
+        answer = (choice.message.content or "").strip()
 
     refused = is_refusal(answer, lang)
     cited = [] if refused else cited_ids(answer, controls)
 
     usage = response.usage
+    # DeepSeek reports how many prompt tokens hit its automatic cache (billed much cheaper).
+    hit = getattr(usage, "prompt_cache_hit_tokens", 0) or 0
+    miss = getattr(usage, "prompt_cache_miss_tokens", None)
+    miss = usage.prompt_tokens - hit if miss is None else miss
     return {
         "question": question,
         "lang": lang,
@@ -157,16 +178,18 @@ def ask(question, client=None):
         "retrieved": controls,
         "model": response.model,
         "usage": {
-            "input_tokens": usage.input_tokens,
-            "output_tokens": usage.output_tokens,
-            "cost_usd": cost_usd(response.model, usage.input_tokens, usage.output_tokens),
+            "input_tokens": usage.prompt_tokens,
+            "cached_input_tokens": hit,
+            "output_tokens": usage.completion_tokens,
+            "cost_usd": cost_usd(MODEL, hit, miss, usage.completion_tokens),
         },
     }
 
 
 def format_usage(u):
     cost = f"${u['cost_usd']:.5f}" if u["cost_usd"] is not None else "unknown price"
-    return f"tokens in={u['input_tokens']} out={u['output_tokens']}  est. cost {cost}"
+    return (f"tokens in={u['input_tokens']} (cached {u['cached_input_tokens']}) "
+            f"out={u['output_tokens']}  est. cost {cost}")
 
 
 def main():

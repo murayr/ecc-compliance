@@ -1,0 +1,80 @@
+# Two eval jobs:
+#  - retrieval-eval: every push and pull request. Free: local embeddings only, no API calls.
+#  - full-eval:      pushes to main only. Calls DeepSeek; needs the DEEPSEEK_API_KEY repository
+#                    secret (Settings > Secrets and variables > Actions). Capped at $0.25 per run.
+# Both fail the workflow if any score is below 80%.
+name: eval
+
+on:
+  push:
+  pull_request:
+
+env:
+  HF_HOME: ${{ github.workspace }}/.hf   # where the bge-m3 model is cached between runs
+
+jobs:
+  retrieval-eval:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Cache embedding model
+        uses: actions/cache@v4
+        with:
+          path: .hf
+          key: hf-bge-m3-v1
+      - name: Install dependencies (CPU-only PyTorch)
+        run: |
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install -r requirements.txt
+      - name: Download bge-m3 (PyTorch weights only, skipped when cached)
+        run: >
+          python -c "from huggingface_hub import snapshot_download; snapshot_download('BAAI/bge-m3',
+          ignore_patterns=['onnx/*', '*.onnx', 'imgs/*', 'colbert_linear.pt', 'sparse_linear.pt'])"
+      - name: Build index
+        run: python ingest.py
+        env:
+          HF_HUB_OFFLINE: "1"
+      - name: Retrieval eval (free)
+        run: python eval.py --retrieval-only
+        env:
+          HF_HUB_OFFLINE: "1"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: index
+          path: index/
+          retention-days: 1
+
+  full-eval:
+    needs: retrieval-eval
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    env:
+      DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+      HF_HUB_OFFLINE: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check the API key secret is set
+        run: test -n "$DEEPSEEK_API_KEY" || (echo "Add the DEEPSEEK_API_KEY repository secret" && exit 1)
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Restore embedding model
+        uses: actions/cache@v4
+        with:
+          path: .hf
+          key: hf-bge-m3-v1
+      - name: Install dependencies (CPU-only PyTorch)
+        run: |
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install -r requirements.txt
+      - uses: actions/download-artifact@v4   # reuse the index built above instead of re-embedding
+        with:
+          name: index
+          path: index/
+      - name: Full eval (DeepSeek)
+        run: python eval.py --budget 0.25

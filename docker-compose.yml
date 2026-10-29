@@ -1,11 +1,11 @@
-# Usage: set ANTHROPIC_API_KEY in your shell, then `docker compose up --build`
+# Usage: set DEEPSEEK_API_KEY in your shell, then `docker compose up --build`
 # and open http://localhost:3000
 services:
   api:
     build: .
     environment:
-      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:?set ANTHROPIC_API_KEY in your shell}
-      CLAUDE_MODEL: ${CLAUDE_MODEL:-claude-sonnet-5-5}
+      DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY:?set DEEPSEEK_API_KEY in your shell}
+      DEEPSEEK_MODEL: ${DEEPSEEK_MODEL:-deepseek-flash}
       ALLOWED_ORIGINS: http://localhost:3000
     ports:
       - "8000:8000"

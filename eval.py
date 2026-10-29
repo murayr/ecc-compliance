@@ -6,21 +6,21 @@ Row types in eval_set.json:
 
 Metrics (per language):
 - retrieval@5:       labelled control is among the 5 retrieved controls (answerable rows)
-- citation accuracy: the answer cites the labelled control (answerable rows, needs the API)
+- citation accuracy: the answer cites the labelled control (answerable rows, needs the LLM API)
 - refusal accuracy:  the answer is exactly the refusal string (refusal rows, needs the API)
 
 Exits with code 1 if any metric is below THRESHOLD, so CI fails on regressions.
 
 Usage:
     python eval.py --retrieval-only    # free: embeddings only, no API calls
-    python eval.py                     # full: also calls Claude for every question
+    python eval.py                     # full: also calls DeepSeek for every question
 """
 import argparse
 import json
 import sys
 from collections import defaultdict
 
-from rag import MODEL, ask, format_usage, retrieve
+from rag import MODEL, ask, format_usage, make_client, retrieve
 
 THRESHOLD = 0.80
 
@@ -28,7 +28,7 @@ THRESHOLD = 0.80
 def main():
     sys.stdout.reconfigure(encoding="utf-8")
     ap = argparse.ArgumentParser()
-    ap.add_argument("--retrieval-only", action="store_true", help="skip the Claude API (free)")
+    ap.add_argument("--retrieval-only", action="store_true", help="skip the LLM API (free)")
     ap.add_argument("--file", default="eval_set.json")
     ap.add_argument("--budget", type=float, default=1.00,
                     help="stop the full eval once estimated spend exceeds this many USD")
@@ -42,8 +42,7 @@ def main():
     if args.retrieval_only:
         rows = [r for r in rows if r.get("expect") != "refusal"]   # refusals can only be scored with the API
     else:
-        import anthropic
-        client = anthropic.Anthropic()
+        client = make_client()
 
     hits = defaultdict(list)       # (lang, metric) -> [True/False, ...]
     total_in = total_out = total_cost = 0
