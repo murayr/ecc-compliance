@@ -1,0 +1,10 @@
+image: python:3.11-slim
+
+stages: [eval]
+
+eval:
+  stage: eval
+  script:
+    - pip install -r requirements.txt
+    - python ingest.py
+    - python eval.py --retrieval-only
