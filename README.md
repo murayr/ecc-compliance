@@ -97,9 +97,24 @@ developing retrieval, so `eval_set.json` stays a held-out test.
 | smoke (10/lang) | EN | 90% @5 | 100% @5 |
 | smoke (10/lang) | AR | 100% @5 (patch question at rank 3) | 100% @5 (rank 3) |
 
-### Full eval (citation and refusal accuracy)
+### Full eval (`deepseek-flash`, 58 questions)
 
-Not run yet: waiting for a DeepSeek API key. Retrieval-only evals don't need one.
+| Metric | EN before | EN after | AR before | AR after |
+|---|---|---|---|---|
+| citation accuracy (labelled control cited) | 100% (25/25) | 100% | 100% (25/25) | 100% |
+| refusal accuracy (exact refusal string) | 100% (4/4) | 100% | 100% (4/4) | 100% |
+| answer language matches question | 100% (25/25) | 100% | 100% (25/25) | 100% |
+| citation precision (info, not gated) | 80.0% | 80.0% | 84.7% | 90.0% |
+
+"Before/after" is the prompt change in failure 3 below. Average citations per answer went from 1.48 to 1.34.
+One full run costs about $0.02 at peak prices (≈59k input and 3k output tokens; ~$0.0003 per question).
+The hard refusal rows matter most here: ECC mentions passwords (2-2-3-1) and reporting incidents to the
+NCA (2-13-3-3) but sets no password length or reporting deadline, and the model refused instead of
+inventing one. Every answer was also read by hand against the control text; none contained a wrong claim.
+
+Caveat: 100% on 58 questions written by one person means the set is too easy to separate good from
+better, not that the system is perfect. Next step would be harder questions (multi-control, negations,
+near-duplicate controls) and questions written by someone else.
 
 ### Failures and fixes
 
@@ -113,3 +128,12 @@ Not run yet: waiting for a DeepSeek API key. Retrieval-only evals don't need one
 2. **"Do we need an acceptable use policy for IT assets?"** (expected 2-1-3, rank 2 in both languages).
    *What broke:* nothing to fix. 2-1-3 says to define and approve the policy and 2-1-4 says to apply it;
    the two are almost the same text, and both are in the top 2. Label kept.
+3. **"Does business continuity management need to include disaster recovery plans?"** and similar.
+   *What broke:* the prompt. Answers were correct but padded with generic sibling controls, e.g. "…disaster
+   recovery plans [3-1-3], and these requirements must be identified, documented, and approved [3-1-1],
+   implemented [3-1-2], and periodically reviewed [3-1-4]". The citation metric still passed (it only checks
+   that the labelled control is cited), so I added a precision measure to make this visible.
+   *Change:* one prompt rule: answer only what was asked, without generic "documented / approved /
+   implemented / reviewed" controls unless the question is about that. Arabic precision went from 84.7% to
+   90.0%; English stayed at 80.0% (its remaining extra citations are mostly defensible, e.g. 2-1-4 "apply the
+   acceptable use policy" next to 2-1-3 "define it"). No other metric changed.

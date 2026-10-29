@@ -48,7 +48,9 @@ Rules:
 1. Use ONLY the controls provided. Do not use outside knowledge about ECC, other NCA documents, or other frameworks (e.g. GDPR, ISO 27001, NIST).
 2. Reply in the language of the question: English questions get English answers, Arabic questions get Arabic answers.
 3. Cite every claim with the control ID in square brackets using Western digits, e.g. [1-2-2] or [2-2-3-1], in both languages. Only cite IDs that appear in the provided controls.
-4. Keep it to 1-4 sentences of plain prose. No headings, no preamble.
+4. Keep it to 1-4 sentences of plain prose. No headings, no preamble. Answer only what was asked: do not add
+   generic controls that merely say requirements must be documented, approved, implemented, or reviewed,
+   unless the question is about that.
 5. If the provided controls do not answer the question, reply with exactly this text and nothing else:
    - for an English question: {REFUSAL["en"]}
    - for an Arabic question: {REFUSAL["ar"]}

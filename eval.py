@@ -8,6 +8,9 @@ Metrics (per language):
 - retrieval@5:       labelled control is among the 5 retrieved controls (answerable rows)
 - citation accuracy: the answer cites the labelled control (answerable rows, needs the LLM API)
 - refusal accuracy:  the answer is exactly the refusal string (refusal rows, needs the API)
+- answer language:   the answer is in the question's language (answerable rows, needs the API)
+- citation precision (reported, not gated): share of cited controls that are the labelled one,
+  so an answer that cites everything it retrieved can't look perfect
 
 Exits with code 1 if any metric is below THRESHOLD, so CI fails on regressions.
 
@@ -20,7 +23,7 @@ import json
 import sys
 from collections import defaultdict
 
-from rag import MODEL, ask, format_usage, make_client, retrieve
+from rag import MODEL, ask, detect_language, format_usage, make_client, retrieve
 
 THRESHOLD = 0.80
 
@@ -33,6 +36,7 @@ def main():
     ap.add_argument("--budget", type=float, default=1.00,
                     help="stop the full eval once estimated spend exceeds this many USD")
     ap.add_argument("--ids", help="comma-separated row ids to run (e.g. to re-check failures cheaply)")
+    ap.add_argument("--save", help="write every row's answer, citations and usage to this JSON file")
     args = ap.parse_args()
 
     rows = json.load(open(args.file, encoding="utf-8"))
@@ -45,6 +49,8 @@ def main():
         client = make_client()
 
     hits = defaultdict(list)       # (lang, metric) -> [True/False, ...]
+    precision = defaultdict(list)  # lang -> [share of citations that are the labelled control, ...]
+    records = []
     total_in = total_out = total_cost = 0
 
     for row in rows:
@@ -78,12 +84,22 @@ def main():
                 verdict = "refused OK" if ok else "ANSWERED (should refuse)"
             else:
                 cited = [c["id"] for c in result["cited"]]
-                ok = expected in cited
-                hits[(lang, "citation")].append(ok)
-                verdict = f"cited={cited} {'OK' if ok else 'FAIL'}" + (" (refused)" if result["refused"] else "")
+                cited_ok = expected in cited
+                hits[(lang, "citation")].append(cited_ok)
+                if cited:
+                    precision[lang].append(cited.count(expected) / len(cited))
+                same_language = result["refused"] or detect_language(result["answer"]) == lang
+                hits[(lang, "language")].append(same_language)
+                ok = cited_ok and same_language
+                verdict = (f"cited={cited} {'OK' if cited_ok else 'FAIL'}"
+                           + (" (refused)" if result["refused"] else "")
+                           + ("" if same_language else " WRONG LANGUAGE"))
             line += f"\n      {verdict}  {format_usage(u)}"
             if not ok:
                 line += f"\n      answer: {result['answer'][:300]}"
+            records.append({**row, "answer": result["answer"], "refused": result["refused"],
+                            "cited": [c["id"] for c in result["cited"]],
+                            "retrieved": [c["id"] for c in result["retrieved"]], "usage": u, "pass": ok})
         print(line)
 
     print("\n=== results ===")
@@ -92,6 +108,12 @@ def main():
         score = sum(values) / len(values)
         failed |= score < THRESHOLD
         print(f"{lang}  {metric:12} {score:6.1%}  ({sum(values)}/{len(values)})")
+    for lang, values in sorted(precision.items()):
+        print(f"{lang}  {'precision':12} {sum(values) / len(values):6.1%}  "
+              f"(info, not gated: avg share of citations that are the labelled control)")
+    if args.save and records:
+        json.dump(records, open(args.save, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+        print(f"saved {len(records)} rows to {args.save}")
     if not args.retrieval_only:
         print(f"\nmodel {MODEL}: {len(rows)} questions, tokens in={total_in} out={total_out}, "
               f"est. cost ${total_cost:.4f} (avg ${total_cost / max(len(rows), 1):.5f}/question)")
