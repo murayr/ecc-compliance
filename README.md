@@ -66,12 +66,10 @@ docker compose up --build          # API on :8000, front end on http://localhost
 
 ## CI (GitHub Actions)
 
-`.github/workflows/eval.yml`:
-- `retrieval-eval` runs on every push and pull request: builds the index and runs
-  `eval.py --retrieval-only` (free). The bge-m3 model is cached between runs.
-- `full-eval` runs only on pushes to `main`: reuses that index and runs the full eval with a $0.25
-  budget cap. Add `DEEPSEEK_API_KEY` as a repository secret (Settings > Secrets and variables > Actions).
-- Both fail the workflow if any score drops below 80%.
+`.github/workflows/eval.yml` runs on every push and pull request: it builds the index and runs
+`eval.py --retrieval-only`, failing if retrieval@5 drops below 80% in either language. It is free
+(no API calls) and caches the bge-m3 model between runs. The full eval, which calls DeepSeek, is run
+locally (`python eval.py --budget 0.25`), so the repository needs no API key secret.
 
 ## Evaluation
 
