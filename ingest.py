@@ -294,11 +294,30 @@ def main():
         return
 
     import numpy as np
+    owners, texts = search_units(chunks)
     model = get_model()
-    vectors = model.encode([c["embed_text"] for c in chunks], batch_size=8,
-                           normalize_embeddings=True, show_progress_bar=True)
+    vectors = model.encode(texts, batch_size=8, normalize_embeddings=True, show_progress_bar=True)
     np.save(INDEX_DIR / "embeddings.npy", vectors.astype("float32"))
-    print(f"saved {len(chunks)} chunks and {vectors.shape} embeddings to {INDEX_DIR}/")
+    (INDEX_DIR / "units.json").write_text(json.dumps(owners), encoding="utf-8")
+    print(f"saved {len(chunks)} chunks and {vectors.shape} embeddings ({len(texts)} search units) to {INDEX_DIR}/")
+
+
+def search_units(chunks):
+    """What gets embedded. Each control is embedded whole, and each of its sub-clauses is also
+    embedded on its own (with the control's intro sentence for context). A long control like
+    2-10-3 has five unrelated sub-clauses, so one vector for the whole thing blurs them;
+    separate vectors let a narrow question match the one sub-clause it is about.
+    Returns (owners, texts): owners[i] is the index in `chunks` that texts[i] belongs to."""
+    owners, texts = [], []
+    for i, c in enumerate(chunks):
+        owners.append(i)
+        texts.append(c["embed_text"])
+        intro, *subclauses = c["text"].split("\n")
+        header = c["embed_text"].split("\n")[0]       # "2-10-3 | domain > subdomain"
+        for line in subclauses:
+            owners.append(i)
+            texts.append(f"{header}\n{intro}\n{line}")
+    return owners, texts
 
 
 if __name__ == "__main__":

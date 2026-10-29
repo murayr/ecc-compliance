@@ -30,9 +30,15 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--retrieval-only", action="store_true", help="skip the Claude API (free)")
     ap.add_argument("--file", default="eval_set.json")
+    ap.add_argument("--budget", type=float, default=1.00,
+                    help="stop the full eval once estimated spend exceeds this many USD")
+    ap.add_argument("--ids", help="comma-separated row ids to run (e.g. to re-check failures cheaply)")
     args = ap.parse_args()
 
     rows = json.load(open(args.file, encoding="utf-8"))
+    if args.ids:
+        wanted = set(args.ids.split(","))
+        rows = [r for r in rows if r.get("id") in wanted]
     if args.retrieval_only:
         rows = [r for r in rows if r.get("expect") != "refusal"]   # refusals can only be scored with the API
     else:
@@ -59,6 +65,9 @@ def main():
         line += f"  | {question[:70]}"
 
         if not args.retrieval_only:
+            if total_cost > args.budget:
+                print(f"\nBUDGET: stopped after ${total_cost:.4f} (limit ${args.budget:.2f}); remaining rows skipped")
+                sys.exit(1)
             result = ask(question, client=client)
             u = result["usage"]
             total_in += u["input_tokens"]

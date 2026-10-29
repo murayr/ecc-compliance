@@ -62,8 +62,9 @@ def is_refusal(answer, lang):
 def load_index():
     chunks = json.loads((INDEX_DIR / "chunks.json").read_text(encoding="utf-8"))
     vectors = np.load(INDEX_DIR / "embeddings.npy")
-    assert len(chunks) == len(vectors), "index is stale: re-run ingest.py"
-    return chunks, vectors
+    owners = np.array(json.loads((INDEX_DIR / "units.json").read_text(encoding="utf-8")))
+    assert len(owners) == len(vectors), "index is stale: re-run ingest.py"
+    return chunks, vectors, owners
 
 
 @lru_cache(maxsize=1)
@@ -80,10 +81,13 @@ def detect_language(text):
 
 def retrieve(question, k=TOP_K, lang=None):
     """Return the k controls (in the question's language) most similar to the question."""
-    chunks, vectors = load_index()
+    chunks, vectors, owners = load_index()
     lang = lang or detect_language(question)
     q = embedder().encode([question], normalize_embeddings=True)[0]
-    scores = vectors @ q                       # cosine similarity (vectors are normalised)
+    unit_scores = vectors @ q                  # cosine similarity (vectors are normalised)
+    # A control's score is its best-matching unit (the whole control or one of its sub-clauses).
+    scores = np.full(len(chunks), -1.0)
+    np.maximum.at(scores, owners, unit_scores)
     order = [i for i in np.argsort(-scores) if chunks[i]["lang"] == lang][:k]
     return [{**chunks[i], "score": float(scores[i])} for i in order]
 
