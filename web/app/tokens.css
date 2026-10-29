@@ -1,0 +1,32 @@
+:root {
+  --space-3xs: 2px; --space-2xs: 4px; --space-xs: 8px; --space-sm: 12px; --space-md: 16px; --space-lg: 24px; --space-xl: 40px; --space-2xl: 64px; --space-3xl: 96px; --space-4xl: 144px;
+  --text-xs: 0.75rem; --text-sm: 0.875rem; --text-md: 1rem; --text-lg: 1.2rem; --text-xl: 1.44rem; --text-2xl: 1.728rem; --text-3xl: 2.074rem;
+  --text-display-s: 1.44rem; --text-display: 1.728rem; --text-section: 1.2rem; --text-title: 1rem; --text-lead: 1rem;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1); --ease-in: cubic-bezier(0.7, 0, 0.84, 0); --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms; --dur-short: 220ms; --dur-long: 420ms;
+  --color-error: oklch(74% 0.14 27); --color-success: oklch(72% 0.13 150);
+  --container: 1440px; --gutter: 64px; --gap-columns: 32px; --section-gap-s: 120px; --section-gap: 144px; --section-gap-l: 176px;
+  --z-base: 1; --z-raised: 10; --z-dropdown: 100; --z-sticky: 200; --z-sticky-nav: 300; --z-modal: 400; --z-toast: 500; --z-tooltip: 600;
+
+  /* Brand (kept): black tinted toward Saudi-flag green, hue 158. Surfaces climb by lightness. */
+  --color-paper: oklch(14% 0.012 158); --color-paper-2: oklch(18.5% 0.016 158); --color-paper-3: oklch(23% 0.02 158);
+  --color-ink: oklch(94% 0.012 158); --color-ink-2: oklch(84% 0.016 158); --color-muted: oklch(73% 0.02 158);
+  --color-rule: oklch(29% 0.02 158); --color-edge: oklch(50% 0.03 158);
+  --color-accent: oklch(74% 0.16 156); --color-accent-ink: oklch(17% 0.04 156); --color-focus: oklch(78% 0.19 156);
+  /* Declared surfaces, not accent: the user's own messages, and the "not covered" state. */
+  --color-field: oklch(33% 0.07 156); --color-field-ink: oklch(96% 0.012 158);
+  --color-notice: oklch(82% 0.1 85); --color-notice-paper: oklch(21% 0.025 85);
+  /* The two fixed blooms on the canvas, and the blurred chrome over it. */
+  --color-bloom: oklch(34% 0.09 156); --color-bloom-2: oklch(28% 0.065 160);
+  --color-chrome: color-mix(in oklab, var(--color-paper) 72%, transparent);
+
+  /* Brand faces (kept): IBM Plex Sans Arabic leads, IBM Plex Sans for Latin runs, Plex Mono only for control IDs. */
+  --font-display: var(--font-ar), var(--font-en), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-ar), var(--font-en), ui-sans-serif, system-ui, sans-serif;
+  --font-latin: var(--font-en), var(--font-ar), ui-sans-serif, system-ui, sans-serif;
+  --font-outlier: var(--font-mono), ui-monospace, monospace;
+
+  --radius-card: 16px; --radius-inner: 8px; --radius-pill: 999px; --rule-hair: 1px; --shadow-card: none;
+  --tracking-display: 0;
+  --display-weight: 600;
+}

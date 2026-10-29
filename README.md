@@ -47,9 +47,14 @@ cd web && npm install && npm run dev  # front end on http://localhost:3000
 ```
 
 `POST /ask {"question": "..."}` returns the answer, whether it was a refusal, the cited controls with
-their full text, and token usage with estimated cost. The front end is one input; the backend detects
-the language, Arabic answers render right-to-left, and cited controls are expandable cards (`<details>`).
-No UI library: React + plain CSS. Set `NEXT_PUBLIC_API_URL` if the API isn't on `localhost:8000`, and
+their full text, and token usage with estimated cost.
+
+The front end is a single static page with a conversation layout, built Arabic-first for Saudi
+organisations: the document is Arabic and right-to-left, Arabic labels and examples lead, and English
+answers switch to left-to-right inside their own bubbles. Fonts are IBM Plex Sans Arabic and IBM Plex Sans
+(designed as one family, self-hosted by `next/font`). Inline citations such as `[2-2-3]` open the matching
+control card; "not covered" answers have their own state. No UI library: React and plain CSS with logical
+properties, so one stylesheet serves both directions; animations respect `prefers-reduced-motion`. Set `NEXT_PUBLIC_API_URL` if the API isn't on `localhost:8000`, and
 `ALLOWED_ORIGINS` on the API if the front end isn't on `localhost:3000`.
 
 ## Docker
