@@ -76,13 +76,7 @@ export default function Home() {
 
   return (
     <div className="app">
-      <div className="backdrop" aria-hidden="true">
-        <span className="orb orb-a" />
-        <span className="orb orb-b" />
-        <span className="orb orb-c" />
-      </div>
-
-      <header className="topbar glass">
+      <header className="topbar">
         <div className="brand">
           <span className="mark"><Icon name="shield" /></span>
           <div className="brand-text">
@@ -109,12 +103,13 @@ export default function Home() {
                 <li key={s.text}>
                   <button
                     type="button"
-                    className="suggestion glass"
+                    className="suggestion"
                     lang={s.lang}
                     dir={s.lang === "ar" ? "rtl" : "ltr"}
                     onClick={() => ask(s.text)}
                   >
-                    {s.text}
+                    <Icon name="question" />
+                    <span className="suggestion-text">{s.text}</span>
                   </button>
                 </li>
               ))}
@@ -132,7 +127,7 @@ export default function Home() {
       </main>
 
       <footer className="composer-wrap">
-        <form className="composer glass" onSubmit={onSubmit}>
+        <form className="composer" onSubmit={onSubmit}>
           <textarea
             ref={inputRef}
             dir="auto"
@@ -150,12 +145,9 @@ export default function Home() {
           </button>
         </form>
         <p className="hint">
-          الإجابات مبنية على نص الضوابط فقط ولا تُغني عن المراجعة النظامية
-          <span className="hint-en">
-            <span aria-hidden="true"> · </span>
-            {/* <bdi> isolates the English run so it can't reorder the Arabic around it */}
-            <bdi lang="en">Enter to send · Shift+Enter for a new line</bdi>
-          </span>
+          <span>الإجابات مبنية على نص الضوابط فقط ولا تُغني عن المراجعة النظامية</span>
+          {/* <bdi> isolates the English run so it can't reorder the Arabic around it */}
+          <bdi className="hint-en" lang="en">Enter to send, Shift+Enter for a new line</bdi>
         </p>
       </footer>
     </div>

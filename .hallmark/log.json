@@ -1,0 +1,24 @@
+[
+ {
+  "mode": "redesign",
+  "depth": "restyle",
+  "scope": "app",
+  "shape": "app screen",
+  "theme": "brand",
+  "genre": "atmospheric",
+  "nav": "kept, sticky top bar on a blur",
+  "signature": "the cited control, opened in place from its chip",
+  "states": [
+   "empty",
+   "loading",
+   "error",
+   "not covered",
+   "full"
+  ],
+  "waived": [
+   "39b"
+  ],
+  "prompt": "Arabic-first ECC compliance assistant for Saudi organisations: ask a question, check the cited control",
+  "date": "2026-10-29"
+ }
+]

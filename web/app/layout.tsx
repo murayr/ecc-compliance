@@ -6,13 +6,13 @@ import "./globals.css";
 // share x-height, weight and rhythm when mixed in one line. next/font self-hosts them at build time.
 const arabic = IBM_Plex_Sans_Arabic({
   subsets: ["arabic"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "600"],
   variable: "--font-ar",
   display: "swap",
 });
 const latin = IBM_Plex_Sans({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["400", "600"],
   variable: "--font-en",
   display: "swap",
 });

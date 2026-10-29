@@ -66,7 +66,7 @@ export function AnswerBubble({ turn, onRetry }: { turn: Turn; onRetry: () => voi
 
   if (turn.status === "loading") {
     return (
-      <div className="bubble assistant glass" lang={lang} dir={dir} aria-busy="true">
+      <div className="bubble assistant" lang={lang} dir={dir} aria-busy="true">
         <span className="avatar"><Icon name="shield" /></span>
         <div className="typing">
           <span className="dots" aria-hidden="true"><i /><i /><i /></span>
@@ -78,7 +78,7 @@ export function AnswerBubble({ turn, onRetry }: { turn: Turn; onRetry: () => voi
 
   if (turn.status === "error" || !turn.result) {
     return (
-      <div className="bubble assistant glass error" lang={lang} dir={dir} role="alert">
+      <div className="bubble assistant error" lang={lang} dir={dir} role="alert">
         <span className="avatar"><Icon name="alert" /></span>
         <div className="body">
           <p className="title">{t.failed}</p>
@@ -99,7 +99,7 @@ export function AnswerBubble({ turn, onRetry }: { turn: Turn; onRetry: () => voi
   };
 
   return (
-    <div className={`bubble assistant glass${r.refused ? " refused" : ""}`} lang={lang} dir={dir}>
+    <div className={`bubble assistant${r.refused ? " refused" : ""}`} lang={lang} dir={dir}>
       <span className="avatar"><Icon name={r.refused ? "info" : "shield"} /></span>
       <div className="body">
         {r.refused ? (
@@ -160,8 +160,11 @@ export function AnswerBubble({ turn, onRetry }: { turn: Turn; onRetry: () => voi
         )}
 
         <p className="meta" lang="en" dir="ltr">
-          {r.model} · {r.usage.input_tokens.toLocaleString("en")} in / {r.usage.output_tokens.toLocaleString("en")} out tokens
-          {r.usage.cost_usd !== null && ` · ~$${r.usage.cost_usd.toFixed(4)}`}
+          <span>{r.model}</span>
+          <span>
+            {r.usage.input_tokens.toLocaleString("en")} in, {r.usage.output_tokens.toLocaleString("en")} out tokens
+          </span>
+          {r.usage.cost_usd !== null && <span>~${r.usage.cost_usd.toFixed(4)}</span>}
         </p>
       </div>
     </div>
@@ -175,6 +178,7 @@ const PATHS: Record<string, string> = {
   info: "M12 21a9 9 0 100-18 9 9 0 000 18zm0-12.5v.5m0 3v5",
   retry: "M4 12a8 8 0 0113.7-5.6L20 8.7M20 4v4.7h-4.7M20 12a8 8 0 01-13.7 5.6L4 15.3M4 20v-4.7h4.7",
   chevron: "M6 9l6 6 6-6",
+  question: "M12 21a9 9 0 100-18 9 9 0 000 18zm-2.5-11.5a2.5 2.5 0 115 0c0 1.7-2.5 2-2.5 3.5m0 3v.01",
 };
 
 export function Icon({ name }: { name: keyof typeof PATHS }) {
