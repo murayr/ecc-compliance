@@ -1,10 +1,39 @@
+# Two eval jobs:
+#  - retrieval-eval: every push, free (local embeddings only, no API calls)
+#  - full-eval:      main branch only, calls Claude. Needs ANTHROPIC_API_KEY set as a masked
+#                    CI/CD variable (Settings > CI/CD > Variables). Capped at $1 per run.
 image: python:3.11-slim
 
 stages: [eval]
 
-eval:
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+  HF_HOME: "$CI_PROJECT_DIR/.cache/huggingface"   # keeps the ~2 GB bge-m3 download between runs
+
+cache:
+  key: eval-deps-v1
+  paths: [.cache/]
+
+.setup: &setup
+  - pip install torch --index-url https://download.pytorch.org/whl/cpu
+  - pip install -r requirements.txt
+
+retrieval-eval:
   stage: eval
   script:
-    - pip install -r requirements.txt
+    - *setup
     - python ingest.py
     - python eval.py --retrieval-only
+  artifacts:
+    paths: [index/]          # reused by full-eval so it doesn't re-embed
+    expire_in: 1 day
+
+full-eval:
+  stage: eval
+  needs: [retrieval-eval]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+  script:
+    - test -n "$ANTHROPIC_API_KEY" || (echo "ANTHROPIC_API_KEY CI variable is not set" && exit 1)
+    - *setup
+    - python eval.py --budget 1.00
