@@ -1,0 +1,98 @@
+:root {
+  --bg: #fafaf9;
+  --fg: #1c1917;
+  --muted: #78716c;
+  --border: #e7e5e4;
+  --card: #ffffff;
+  --accent: #0f766e;
+  --warn-bg: #fef3c7;
+  --warn-fg: #92400e;
+  --error: #b91c1c;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1c1917;
+    --fg: #f5f5f4;
+    --muted: #a8a29e;
+    --border: #44403c;
+    --card: #292524;
+    --accent: #2dd4bf;
+    --warn-bg: #422006;
+    --warn-fg: #fcd34d;
+    --error: #f87171;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: system-ui, "Segoe UI", Tahoma, "Noto Sans Arabic", sans-serif;
+  line-height: 1.6;
+}
+
+main { max-width: 760px; margin: 0 auto; padding: 48px 16px; }
+
+h1 { margin: 0 0 4px; font-size: 1.6rem; }
+h2 { font-size: 0.95rem; color: var(--muted); margin: 28px 0 8px; font-weight: 600; }
+.subtitle { color: var(--muted); margin: 0 0 24px; }
+
+form { display: flex; gap: 8px; }
+input {
+  flex: 1;
+  padding: 12px 14px;
+  font: inherit;
+  color: inherit;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+input:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+button {
+  padding: 0 20px;
+  font: inherit;
+  font-weight: 600;
+  color: #fff;
+  background: var(--accent);
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+button:disabled { opacity: 0.5; cursor: default; }
+
+.error { color: var(--error); margin-top: 16px; }
+
+section { margin-top: 28px; }
+section.ar { font-size: 1.08rem; }
+
+.answer {
+  padding: 16px 18px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  white-space: pre-line;
+}
+.answer .ref { color: var(--accent); font-weight: 600; }
+.answer.refused { background: var(--warn-bg); color: var(--warn-fg); border-color: transparent; }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+.card summary {
+  cursor: pointer;
+  padding: 10px 14px;
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+}
+.card .id { font-family: ui-monospace, Consolas, monospace; font-weight: 600; color: var(--accent); }
+.card .domain { margin: 0 14px; color: var(--muted); font-size: 0.85rem; }
+.card .control-text { margin: 6px 14px 14px; white-space: pre-line; }
+
+.usage { color: var(--muted); font-size: 0.8rem; margin-top: 16px; }
