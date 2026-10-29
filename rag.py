@@ -32,15 +32,28 @@ PRICES = {
 CONTROL_ID = re.compile(r"\b\d{1,2}-\d{1,2}-\d{1,2}(?:-\d{1,2})?\b")
 ARABIC = re.compile("[؀-ۿ]")
 
+# Exact strings the model must return when the retrieved controls don't answer the question.
 REFUSAL = {"en": "NOT COVERED", "ar": "غير مغطى في الضوابط المتاحة"}
+LANGUAGE_NAME = {"en": "English", "ar": "Arabic"}
 
-SYSTEM_PROMPT = """You answer questions about the Saudi National Cybersecurity Authority's Essential Cybersecurity Controls (ECC-2:2024).
+SYSTEM_PROMPT = f"""You answer questions about the Saudi National Cybersecurity Authority's Essential Cybersecurity Controls (ECC-2:2024).
 
-You will receive a few ECC controls and a question. Rules:
-- Answer ONLY from the controls provided. Do not use outside knowledge about ECC or any other framework.
-- Cite every claim with the control ID in square brackets, e.g. [1-2-2] or [2-2-3-1]. Only cite IDs that appear in the provided controls.
-- Answer in plain prose, 1-4 sentences. No headings, no preamble.
-- If the provided controls do not answer the question, reply with exactly: I cannot answer this from the provided ECC controls."""
+You will receive some ECC controls, the language of the question, and the question.
+
+Rules:
+1. Use ONLY the controls provided. Do not use outside knowledge about ECC, other NCA documents, or other frameworks (e.g. GDPR, ISO 27001, NIST).
+2. Reply in the language of the question: English questions get English answers, Arabic questions get Arabic answers.
+3. Cite every claim with the control ID in square brackets using Western digits, e.g. [1-2-2] or [2-2-3-1], in both languages. Only cite IDs that appear in the provided controls.
+4. Keep it to 1-4 sentences of plain prose. No headings, no preamble.
+5. If the provided controls do not answer the question, reply with exactly this text and nothing else:
+   - for an English question: {REFUSAL["en"]}
+   - for an Arabic question: {REFUSAL["ar"]}
+   Do this also when a control only mentions the topic without answering what was asked. Never combine the refusal with a partial answer."""
+
+
+def is_refusal(answer, lang):
+    """True if the answer is exactly the refusal string (ignoring surrounding whitespace/punctuation)."""
+    return answer.strip().strip(".。؟?!\"'` ").strip() == REFUSAL[lang]
 
 
 # --------------------------------------------------------------------------- retrieval
@@ -91,6 +104,24 @@ def cost_usd(model, input_tokens, output_tokens):
     return (input_tokens * price_in + output_tokens * price_out) / 1_000_000
 
 
+def build_user_message(question, lang, controls):
+    return (f"{format_controls(controls)}\n\n"
+            f"Question language: {LANGUAGE_NAME[lang]}\n"
+            f"Question: {question}")
+
+
+def cited_ids(answer, controls):
+    """Main control IDs cited in the answer, in order, keeping only IDs we actually retrieved."""
+    ascii_answer = answer.translate(str.maketrans("٠١٢٣٤٥٦٧٨٩", "0123456789"))   # in case Arabic digits are used
+    retrieved_ids = {c["id"] for c in controls}
+    cited = []
+    for cid in CONTROL_ID.findall(ascii_answer):
+        main = "-".join(cid.split("-")[:3])        # 2-2-3-1 -> 2-2-3
+        if main in retrieved_ids and main not in cited:
+            cited.append(main)
+    return cited
+
+
 def ask(question, client=None):
     import anthropic
     client = client or anthropic.Anthropic()   # reads ANTHROPIC_API_KEY from the environment
@@ -102,27 +133,22 @@ def ask(question, client=None):
         max_tokens=2000,
         system=SYSTEM_PROMPT,
         output_config={"effort": "low"},       # short factual answers don't need deep reasoning
-        messages=[{"role": "user", "content": f"{format_controls(controls)}\n\nQuestion: {question}"}],
+        messages=[{"role": "user", "content": build_user_message(question, lang, controls)}],
     )
-    if response.stop_reason == "refusal":
-        answer = REFUSAL[lang]
+    if response.stop_reason == "refusal":      # the API's safety filter declined (not the same as NOT COVERED)
+        answer = "(The model declined to answer this request.)"
     else:
         answer = "".join(b.text for b in response.content if b.type == "text").strip()
 
-    # Normalise Arabic-Indic digits so IDs cited in Arabic answers match our ASCII IDs.
-    ascii_answer = answer.translate(str.maketrans("٠١٢٣٤٥٦٧٨٩", "0123456789"))
-    retrieved_ids = {c["id"] for c in controls}
-    cited = []
-    for cid in CONTROL_ID.findall(ascii_answer):
-        main = "-".join(cid.split("-")[:3])        # 2-2-3-1 -> 2-2-3
-        if main in retrieved_ids and main not in cited:
-            cited.append(main)
+    refused = is_refusal(answer, lang)
+    cited = [] if refused else cited_ids(answer, controls)
 
     usage = response.usage
     return {
         "question": question,
         "lang": lang,
         "answer": answer,
+        "refused": refused,
         "cited": [c for c in controls if c["id"] in cited],
         "retrieved": controls,
         "model": response.model,
@@ -153,7 +179,8 @@ def main():
 
     result = ask(args.question)
     print(result["answer"])
-    print("\ncited:", ", ".join(c["id"] for c in result["cited"]) or "none")
+    print("\nrefused (not covered):", result["refused"])
+    print("cited:", ", ".join(c["id"] for c in result["cited"]) or "none")
     print("retrieved:", ", ".join(f"{c['id']} ({c['score']:.2f})" for c in result["retrieved"]))
     print(f"{result['model']}  {format_usage(result['usage'])}")
 
