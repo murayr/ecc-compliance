@@ -6,3 +6,4 @@ node_modules/
 .next/
 index/embeddings.npy
 index/units.json
+.hallmark/
