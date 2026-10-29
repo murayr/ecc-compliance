@@ -1,0 +1,22 @@
+[
+ {"lang": "en", "control_id": "1-2-2", "question": "Do cybersecurity jobs have to be held by Saudi nationals?"},
+ {"lang": "en", "control_id": "1-9-5", "question": "What happens to an employee's access rights when they leave the organization?"},
+ {"lang": "en", "control_id": "2-12-3", "question": "How long must security event logs be retained?"},
+ {"lang": "en", "control_id": "4-1-3", "question": "Can a managed security operations center that uses remote access be located outside Saudi Arabia?"},
+ {"lang": "en", "control_id": "2-11-3", "question": "What should be in scope for penetration testing?"},
+ {"lang": "en", "control_id": "2-13-3", "question": "Do we have to report cybersecurity incidents to the NCA?"},
+ {"lang": "en", "control_id": "1-8-2", "question": "Who should audit the implementation of the cybersecurity controls?"},
+ {"lang": "en", "control_id": "2-6-3", "question": "What must happen to company data on a lost phone?"},
+ {"lang": "en", "control_id": "2-10-3", "question": "Should security patches be tested before they are deployed to production?"},
+ {"lang": "en", "control_id": "1-1-1", "question": "Who needs to approve the cybersecurity strategy?"},
+ {"lang": "ar", "control_id": "1-2-2", "question": "هل يجب أن يشغل وظائف الأمن السيبراني مواطنون سعوديون؟"},
+ {"lang": "ar", "control_id": "1-9-5", "question": "ماذا يحدث لصلاحيات الموظف عند انتهاء علاقته الوظيفية مع الجهة؟"},
+ {"lang": "ar", "control_id": "2-12-3", "question": "ما هي المدة الدنيا للاحتفاظ بسجلات الأحداث الأمنية؟"},
+ {"lang": "ar", "control_id": "4-1-3", "question": "هل يجوز أن يكون مركز العمليات الأمنية المدار الذي يعمل عن بعد خارج المملكة؟"},
+ {"lang": "ar", "control_id": "2-11-3", "question": "ما الذي يجب أن يشمله نطاق اختبار الاختراق؟"},
+ {"lang": "ar", "control_id": "2-13-3", "question": "هل يجب إبلاغ الهيئة الوطنية للأمن السيبراني عند وقوع حادثة أمنية؟"},
+ {"lang": "ar", "control_id": "1-8-2", "question": "من الجهة التي يجب أن تدقق على تطبيق ضوابط الأمن السيبراني؟"},
+ {"lang": "ar", "control_id": "2-6-3", "question": "ماذا يجب أن يحدث لبيانات الجهة على جهاز محمول مفقود؟"},
+ {"lang": "ar", "control_id": "2-10-3", "question": "هل يجب اختبار التحديثات الأمنية قبل تطبيقها على بيئة الإنتاج؟"},
+ {"lang": "ar", "control_id": "1-1-1", "question": "من يعتمد إستراتيجية الأمن السيبراني للجهة؟"}
+]

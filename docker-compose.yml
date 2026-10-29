@@ -1,0 +1,29 @@
+# Usage: set DEEPSEEK_API_KEY in your shell, then `docker compose up --build`
+# and open http://localhost:3000
+services:
+  api:
+    build: .
+    environment:
+      DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY:?set DEEPSEEK_API_KEY in your shell}
+      DEEPSEEK_MODEL: ${DEEPSEEK_MODEL:-deepseek-flash}
+      ALLOWED_ORIGINS: http://localhost:3000
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s     # loading the embedding model takes a little while
+
+  web:
+    build:
+      context: ./web
+      args:
+        # The browser calls the API directly, so this is the API's address as seen from the browser.
+        NEXT_PUBLIC_API_URL: http://localhost:8000
+    ports:
+      - "3000:3000"
+    depends_on:
+      api:
+        condition: service_healthy

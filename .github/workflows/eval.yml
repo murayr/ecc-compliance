@@ -1,0 +1,42 @@
+# Free retrieval eval on every push and pull request: local embeddings only, no API calls.
+# Fails the workflow if retrieval@5 drops below 80% in either language.
+# The full eval (DeepSeek answers) is run locally instead: python eval.py --budget 0.25
+name: eval
+
+on:
+  push:
+  pull_request:
+
+env:
+  HF_HOME: ${{ github.workspace }}/.hf   # where the bge-m3 model is cached between runs
+
+jobs:
+  retrieval-eval:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Cache embedding model
+        uses: actions/cache@v4
+        with:
+          path: .hf
+          key: hf-bge-m3-v1
+      - name: Install dependencies (CPU-only PyTorch)
+        run: |
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install -r requirements.txt
+      - name: Download bge-m3 (PyTorch weights only, skipped when cached)
+        run: >
+          python -c "from huggingface_hub import snapshot_download; snapshot_download('BAAI/bge-m3',
+          ignore_patterns=['onnx/*', '*.onnx', 'imgs/*', 'colbert_linear.pt', 'sparse_linear.pt'])"
+      - name: Build index
+        run: python ingest.py
+        env:
+          HF_HUB_OFFLINE: "1"
+      - name: Retrieval eval (free)
+        run: python eval.py --retrieval-only
+        env:
+          HF_HUB_OFFLINE: "1"
