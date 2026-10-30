@@ -1,0 +1,1482 @@
+[
+ {
+  "id": "h-L1-en",
+  "lang": "en",
+  "category": "lifecycle",
+  "question": "How often must the backup and recovery requirements be reviewed?",
+  "control_ids": [
+   "2-9-4"
+  ],
+  "evidence": {
+   "2-9-4": "shall be periodically reviewed"
+  },
+  "answer": "The provided controls do not specify a frequency; they only state that the implementation of backup and recovery requirements shall be periodically reviewed [2-9-4].",
+  "refused": false,
+  "cited": [
+   "2-9-4"
+  ],
+  "retrieved": [
+   "2-9-4",
+   "2-9-3",
+   "2-7-3",
+   "2-9-1",
+   "2-13-4"
+  ],
+  "usage": {
+   "input_tokens": 573,
+   "cached_input_tokens": 256,
+   "output_tokens": 31,
+   "cost_usd": 0.000133836
+  },
+  "pass": true
+ },
+ {
+  "id": "h-L1-ar",
+  "lang": "ar",
+  "category": "lifecycle",
+  "question": "هل يجب مراجعة تطبيق متطلبات النسخ الاحتياطي؟",
+  "control_ids": [
+   "2-9-4"
+  ],
+  "evidence": {
+   "2-9-4": "يجب مراجعة تطبيق متطلبات الأمن السيبراني لإدارة النسخ الاحتياطية"
+  },
+  "answer": "نعم، يجب مراجعة تطبيق متطلبات الأمن السيبراني لإدارة النسخ الاحتياطية للجهة [2-9-4].",
+  "refused": false,
+  "cited": [
+   "2-9-4"
+  ],
+  "retrieved": [
+   "2-9-4",
+   "2-9-2",
+   "2-9-3",
+   "2-9-1",
+   "2-8-4"
+  ],
+  "usage": {
+   "input_tokens": 703,
+   "cached_input_tokens": 128,
+   "output_tokens": 35,
+   "cost_usd": 0.000215268
+  },
+  "pass": true
+ },
+ {
+  "id": "h-L2-en",
+  "lang": "en",
+  "category": "lifecycle",
+  "question": "Is it enough to write down the penetration testing requirements, or do the tests have to be carried out?",
+  "control_ids": [
+   "2-11-2"
+  ],
+  "evidence": {
+   "2-11-2": "shall be implemented"
+  },
+  "answer": "Writing them down is not enough: the requirements must be identified, documented, and approved [2-11-1], and then implemented [2-11-2], with the implementation periodically reviewed [2-11-4].",
+  "refused": false,
+  "cited": [
+   "2-11-1",
+   "2-11-2",
+   "2-11-4"
+  ],
+  "retrieved": [
+   "2-11-3",
+   "2-11-1",
+   "2-11-2",
+   "2-11-4",
+   "2-13-3"
+  ],
+  "usage": {
+   "input_tokens": 653,
+   "cached_input_tokens": 256,
+   "output_tokens": 46,
+   "cost_usd": 0.000175836
+  },
+  "pass": true
+ },
+ {
+  "id": "h-L2-ar",
+  "lang": "ar",
+  "category": "lifecycle",
+  "question": "هل يكفي توثيق متطلبات اختبار الاختراق أم يجب تنفيذ الاختبارات فعلياً؟",
+  "control_ids": [
+   "2-11-2"
+  ],
+  "evidence": {
+   "2-11-2": "يجب تنفيذ عمليات اختبار الاختراق في الجهة"
+  },
+  "answer": "لا يكفي التوثيق، إذ يجب تحديد وتوثيق واعتماد متطلبات الأمن السيبراني لعمليات اختبار الاختراق [2-11-1] إضافةً إلى تنفيذ عمليات اختبار الاختراق فعلياً في الجهة [2-11-2]، على أن تشمل المتطلبات نطاق العمل والاختبار الدوري [2-11-3].",
+  "refused": false,
+  "cited": [
+   "2-11-1",
+   "2-11-2",
+   "2-11-3"
+  ],
+  "retrieved": [
+   "2-11-1",
+   "2-11-2",
+   "2-11-4",
+   "2-11-3",
+   "2-8-1"
+  ],
+  "usage": {
+   "input_tokens": 698,
+   "cached_input_tokens": 128,
+   "output_tokens": 90,
+   "cost_usd": 0.000279768
+  },
+  "pass": true
+ },
+ {
+  "id": "h-L3-en",
+  "lang": "en",
+  "category": "lifecycle",
+  "question": "Do the cryptography requirements have to be documented and approved?",
+  "control_ids": [
+   "2-8-1"
+  ],
+  "evidence": {
+   "2-8-1": "shall be identified, documented, and approved"
+  },
+  "answer": "Yes, cybersecurity requirements for cryptography within the entity must be identified, documented, and approved [2-8-1].",
+  "refused": false,
+  "cited": [
+   "2-8-1"
+  ],
+  "retrieved": [
+   "2-8-1",
+   "2-8-3",
+   "2-7-1",
+   "2-1-1",
+   "4-2-1"
+  ],
+  "usage": {
+   "input_tokens": 649,
+   "cached_input_tokens": 256,
+   "output_tokens": 24,
+   "cost_usd": 0.000148236
+  },
+  "pass": true
+ },
+ {
+  "id": "h-L3-ar",
+  "lang": "ar",
+  "category": "lifecycle",
+  "question": "هل يجب توثيق واعتماد متطلبات التشفير؟",
+  "control_ids": [
+   "2-8-1"
+  ],
+  "evidence": {
+   "2-8-1": "يجب تحديد وتوثيق واعتماد متطلبات الأمن السيبراني للتشفير"
+  },
+  "answer": "نعم، يجب تحديد وتوثيق واعتماد متطلبات الأمن السيبراني للتشفير في الجهة [2-8-1]، على أن تغطي هذه المتطلبات بحد أدنى ما ورد في المعايير الوطنية للتشفير الصادرة من الهيئة [2-8-3].",
+  "refused": false,
+  "cited": [
+   "2-8-1",
+   "2-8-3"
+  ],
+  "retrieved": [
+   "2-8-1",
+   "2-7-1",
+   "2-3-1",
+   "2-11-1",
+   "2-8-3"
+  ],
+  "usage": {
+   "input_tokens": 809,
+   "cached_input_tokens": 128,
+   "output_tokens": 70,
+   "cost_usd": 0.00028906799999999996
+  },
+  "pass": true
+ },
+ {
+  "id": "h-L4-en",
+  "lang": "en",
+  "category": "lifecycle",
+  "question": "Are the mobile device and BYOD security requirements reviewed on a regular basis?",
+  "control_ids": [
+   "2-6-4"
+  ],
+  "evidence": {
+   "2-6-4": "shall be periodically reviewed"
+  },
+  "answer": "Yes, the implementation of cybersecurity requirements for mobile devices and BYOD security must be periodically reviewed [2-6-4].",
+  "refused": false,
+  "cited": [
+   "2-6-4"
+  ],
+  "retrieved": [
+   "2-6-4",
+   "2-6-3",
+   "2-6-2",
+   "2-6-1",
+   "2-1-6"
+  ],
+  "usage": {
+   "input_tokens": 633,
+   "cached_input_tokens": 256,
+   "output_tokens": 25,
+   "cost_usd": 0.000144636
+  },
+  "pass": true
+ },
+ {
+  "id": "h-L4-ar",
+  "lang": "ar",
+  "category": "lifecycle",
+  "question": "هل تُراجع متطلبات أمن الأجهزة المحمولة والأجهزة الشخصية بشكل دوري؟",
+  "control_ids": [
+   "2-6-4"
+  ],
+  "evidence": {
+   "2-6-4": "يجب مراجعة تطبيق متطلبات الأمن السيبراني الخاصة لأمن الأجهزة المحمولة"
+  },
+  "answer": "نعم، يجب مراجعة تطبيق متطلبات الأمن السيبراني الخاصة بأمن الأجهزة المحمولة وأجهزة (BYOD) للجهة دورياً [2-6-4].",
+  "refused": false,
+  "cited": [
+   "2-6-4"
+  ],
+  "retrieved": [
+   "2-6-4",
+   "2-6-1",
+   "2-6-3",
+   "1-8-2",
+   "2-3-4"
+  ],
+  "usage": {
+   "input_tokens": 909,
+   "cached_input_tokens": 128,
+   "output_tokens": 45,
+   "cost_usd": 0.00028906799999999996
+  },
+  "pass": true
+ },
+ {
+  "id": "h-L5-en",
+  "lang": "en",
+  "category": "lifecycle",
+  "question": "How often should the cybersecurity requirements for third parties be reviewed?",
+  "control_ids": [
+   "4-1-4"
+  ],
+  "evidence": {
+   "4-1-4": "shall be periodically reviewed"
+  },
+  "answer": "The provided controls do not specify a frequency; they only state that cybersecurity requirements for third parties shall be periodically reviewed [4-1-4].",
+  "refused": false,
+  "cited": [
+   "4-1-4"
+  ],
+  "retrieved": [
+   "4-1-4",
+   "2-7-3",
+   "1-3-4",
+   "1-9-6",
+   "2-15-4"
+  ],
+  "usage": {
+   "input_tokens": 522,
+   "cached_input_tokens": 128,
+   "output_tokens": 29,
+   "cost_usd": 0.00015376799999999998
+  },
+  "pass": true
+ },
+ {
+  "id": "h-L5-ar",
+  "lang": "ar",
+  "category": "lifecycle",
+  "question": "ما دورية مراجعة متطلبات الأمن السيبراني للموردين والأطراف الخارجية؟",
+  "control_ids": [
+   "4-1-4"
+  ],
+  "evidence": {
+   "4-1-4": "يجب مراجعة متطلبات الأمن السيبراني مع الأطراف الخارجية دورياً"
+  },
+  "answer": "تُراجع متطلبات الأمن السيبراني مع الأطراف الخارجية دورياً [4-1-4].",
+  "refused": false,
+  "cited": [
+   "4-1-4"
+  ],
+  "retrieved": [
+   "4-1-4",
+   "1-8-2",
+   "1-8-1",
+   "4-1-3",
+   "1-8-3"
+  ],
+  "usage": {
+   "input_tokens": 903,
+   "cached_input_tokens": 128,
+   "output_tokens": 26,
+   "cost_usd": 0.000264468
+  },
+  "pass": true
+ },
+ {
+  "id": "h-M1-en",
+  "lang": "en",
+  "category": "multi",
+  "question": "What must our contract with a cloud hosting provider cover about data and confidentiality?",
+  "control_ids": [
+   "4-1-2",
+   "4-2-3"
+  ],
+  "evidence": {
+   "4-1-2": "Clauses of non-disclosure",
+   "4-2-3": "returning data (in a usable format) upon service completion"
+  },
+  "answer": "Contracts with cloud hosting providers must include protection of the entity's data according to its classification level and return of that data in a usable format upon service completion [4-2-3-1], as well as separation of the entity's environment, especially virtual servers, from other entities' environments [4-2-3-2]. Where the agreement may affect the entity's data or services, it must also include non-disclosure clauses and secure removal of the entity's data by the third party at end of service [4-1-2-1].",
+  "refused": false,
+  "cited": [
+   "4-2-3",
+   "4-1-2"
+  ],
+  "retrieved": [
+   "4-2-3",
+   "4-2-1",
+   "4-2-2",
+   "4-2-4",
+   "4-1-2"
+  ],
+  "usage": {
+   "input_tokens": 758,
+   "cached_input_tokens": 256,
+   "output_tokens": 112,
+   "cost_usd": 0.000286536
+  },
+  "pass": true
+ },
+ {
+  "id": "h-M1-ar",
+  "lang": "ar",
+  "category": "multi",
+  "question": "ما الذي يجب أن يغطيه عقدنا مع مزود الاستضافة السحابية بشأن البيانات والسرية؟",
+  "control_ids": [
+   "4-1-2",
+   "4-2-3"
+  ],
+  "evidence": {
+   "4-1-2": "بنود المحافظة على سرية المعلومات",
+   "4-2-3": "وإعادتها للجهة (بصيغة قابلة للاستخدام) عند انتهاء الخدمة"
+  },
+  "answer": "يجب أن يغطي العقد مع مزود الاستضافة حماية بيانات الجهة بما يتوافق مع مستوى تصنيفها وإعادتها للجهة بصيغة قابلة للاستخدام عند انتهاء الخدمة [4-2-3-1]، إلى جانب بنود المحافظة على سرية المعلومات والحذف الآمن لبيانات الجهة من قِبَل الطرف الخارجي عند انتهاء الخدمة [4-1-2-1]. كما يجب أن يتضمن إجراءات التواصل عند حدوث حادثة أمن سيبراني [4-1-2-2] وإلزام الطرف الخارجي بتطبيق متطلبات وسياسات الأمن السيبراني للجهة والمتطلبات التشريعية والتنظيمية ذات العلاقة [4-1-2-3].",
+  "refused": false,
+  "cited": [
+   "4-2-3",
+   "4-1-2"
+  ],
+  "retrieved": [
+   "4-2-3",
+   "4-1-2",
+   "4-2-1",
+   "4-2-2",
+   "4-2-4"
+  ],
+  "usage": {
+   "input_tokens": 1015,
+   "cached_input_tokens": 640,
+   "output_tokens": 180,
+   "cost_usd": 0.00033234000000000003
+  },
+  "pass": true
+ },
+ {
+  "id": "h-M2-en",
+  "lang": "en",
+  "category": "multi",
+  "question": "What do we need to protect company data held on staff phones, including encryption standards and key management?",
+  "control_ids": [
+   "2-6-3",
+   "2-8-3"
+  ],
+  "evidence": {
+   "2-6-3": "Separation and encryption of the entity’s data and information stored on mobile devices",
+   "2-8-3": "Secure management of cryptographic keys during their lifecycles"
+  },
+  "answer": "Company data on staff mobile devices and BYODs must be separated and encrypted [2-6-3-1], with controlled and restricted use based on business needs [2-6-3-2] and deletion upon device loss or termination of employment [2-6-3-3]. Cryptography requirements must include approved cryptographic systems and solutions standards with their technical and regulatory restrictions [2-8-3-1], secure management of cryptographic keys throughout their lifecycles [2-8-3-2], and encryption of data in-transit and at-rest according to classification and relevant legislative and regulatory requirements [2-8-3-3].",
+  "refused": false,
+  "cited": [
+   "2-8-3",
+   "2-6-3"
+  ],
+  "retrieved": [
+   "2-8-3",
+   "2-6-3",
+   "2-5-3",
+   "2-4-3",
+   "2-7-1"
+  ],
+  "usage": {
+   "input_tokens": 1176,
+   "cached_input_tokens": 256,
+   "output_tokens": 132,
+   "cost_usd": 0.00043593600000000005
+  },
+  "pass": true
+ },
+ {
+  "id": "h-M2-ar",
+  "lang": "ar",
+  "category": "multi",
+  "question": "ما المطلوب لحماية بيانات الجهة على هواتف الموظفين، بما في ذلك معايير التشفير وإدارة المفاتيح؟",
+  "control_ids": [
+   "2-6-3",
+   "2-8-3"
+  ],
+  "evidence": {
+   "2-6-3": "فصل وتشفير البيانات والمعلومات",
+   "2-8-3": "الإدارة الآمنة لمفاتيح التشفير"
+  },
+  "answer": "يجب تحديد وتوثيق واعتماد متطلبات الأمن السيبراني لأمن الأجهزة المحمولة وأجهزة BYOD عند ارتباطها بشبكة الجهة [2-6-1]، على أن تشمل كحد أدنى فصل وتشفير بيانات الجهة المخزنة عليها [2-6-3-1] وحذفها عند فقدان الجهاز أو انتهاء العلاقة الوظيفية [2-6-3-3]. أما التشفير فيجب أن يغطي معايير أنظمة وحلول التشفير المعتمدة والإدارة الآمنة للمفاتيح خلال دورة حياتها وتشفير البيانات أثناء النقل والتخزين والمعالجة حسب تصنيفها [2-8-3].",
+  "refused": false,
+  "cited": [
+   "2-8-3",
+   "2-6-3",
+   "2-6-1"
+  ],
+  "retrieved": [
+   "2-8-3",
+   "2-6-3",
+   "2-6-1",
+   "2-7-1",
+   "2-14-3"
+  ],
+  "usage": {
+   "input_tokens": 1238,
+   "cached_input_tokens": 384,
+   "output_tokens": 165,
+   "cost_usd": 0.00045650399999999994
+  },
+  "pass": true
+ },
+ {
+  "id": "h-M3-en",
+  "lang": "en",
+  "category": "multi",
+  "question": "What must happen to a leaver's system access and to company data on their personal devices?",
+  "control_ids": [
+   "1-9-5",
+   "2-6-3"
+  ],
+  "evidence": {
+   "1-9-5": "reviewed and revoked immediately upon the end/termination of their employment",
+   "2-6-3": "after the ending/termination of employment with the entity"
+  },
+  "answer": "Upon termination of employment, the entity's data and information stored on mobile devices and BYODs must be deleted [2-6-3-3], and cybersecurity requirements for personnel must be applied upon the end or termination of their employment [1-9-1].",
+  "refused": false,
+  "cited": [
+   "2-6-3",
+   "1-9-1"
+  ],
+  "retrieved": [
+   "2-6-3",
+   "2-14-3",
+   "2-14-2",
+   "1-9-1",
+   "4-1-2"
+  ],
+  "usage": {
+   "input_tokens": 906,
+   "cached_input_tokens": 384,
+   "output_tokens": 54,
+   "cost_usd": 0.000223704
+  },
+  "pass": false
+ },
+ {
+  "id": "h-M3-ar",
+  "lang": "ar",
+  "category": "multi",
+  "question": "ماذا يجب أن يحدث لصلاحيات الموظف المغادر ولبيانات الجهة على أجهزته الشخصية؟",
+  "control_ids": [
+   "1-9-5",
+   "2-6-3"
+  ],
+  "evidence": {
+   "1-9-5": "مراجعة وإلغاء الصلاحيات للعاملين",
+   "2-6-3": "حذف البيانات والمعلومات (الخاصة بالجهة) المخزنة"
+  },
+  "answer": "يجب مراجعة وإلغاء صلاحيات العاملين مباشرة بعد انتهاء أو إنهاء العلاقة الوظيفية مع الجهة [1-9-5]، كما يجب حذف البيانات والمعلومات الخاصة بالجهة المخزنة على الأجهزة المحمولة وأجهزة BYOD بعد انتهاء أو إنهاء العلاقة الوظيفية [2-6-3-3].",
+  "refused": false,
+  "cited": [
+   "2-6-3",
+   "1-9-5"
+  ],
+  "retrieved": [
+   "2-6-3",
+   "2-2-3",
+   "2-6-1",
+   "1-9-5",
+   "4-1-2"
+  ],
+  "usage": {
+   "input_tokens": 1259,
+   "cached_input_tokens": 384,
+   "output_tokens": 91,
+   "cost_usd": 0.00037400399999999994
+  },
+  "pass": true
+ },
+ {
+  "id": "h-M4-en",
+  "lang": "en",
+  "category": "multi",
+  "question": "How do incident response plans fit with business continuity and disaster recovery?",
+  "control_ids": [
+   "2-13-3",
+   "3-1-3"
+  ],
+  "evidence": {
+   "2-13-3": "Cybersecurity incident response plans and escalation procedures",
+   "3-1-3": "Developing plans for response to cybersecurity incidents that may affect the entity’s business continuity"
+  },
+  "answer": "Cybersecurity incident response plans and escalation procedures are required as part of incident and threat management [2-13-3-1], and business continuity requirements must include plans for responding to cybersecurity incidents that may affect the entity's business continuity [3-1-3-2] as well as disaster recovery plans [3-1-3-3].",
+  "refused": false,
+  "cited": [
+   "3-1-3",
+   "2-13-3"
+  ],
+  "retrieved": [
+   "3-1-3",
+   "2-13-3",
+   "3-1-2",
+   "3-1-4",
+   "3-1-1"
+  ],
+  "usage": {
+   "input_tokens": 674,
+   "cached_input_tokens": 256,
+   "output_tokens": 70,
+   "cost_usd": 0.00021093599999999997
+  },
+  "pass": true
+ },
+ {
+  "id": "h-M4-ar",
+  "lang": "ar",
+  "category": "multi",
+  "question": "كيف ترتبط خطط الاستجابة للحوادث باستمرارية الأعمال والتعافي من الكوارث؟",
+  "control_ids": [
+   "2-13-3",
+   "3-1-3"
+  ],
+  "evidence": {
+   "2-13-3": "وضع خطط الاستجابة للحوادث الأمنية وآليات التصعيد",
+   "3-1-3": "وضع خطط الاستجابة لحوادث الأمن السيبراني التي قد تؤثر على استمرارية أعمال الجهة"
+  },
+  "answer": "ترتبط خطط الاستجابة للحوادث باستمرارية الأعمال من خلال وجوب وضع خطط استجابة لحوادث الأمن السيبراني التي قد تؤثر على استمرارية أعمال الجهة [3-1-3]، إلى جانب وضع خطط التعافي من الكوارث [3-1-3] والتأكد من استمرارية الأنظمة والإجراءات المتعلقة بالأمن السيبراني [3-1-3]. كما تتضمن متطلبات إدارة الحوادث وضع خطط الاستجابة للحوادث الأمنية وآليات التصعيد [2-13-3].",
+  "refused": false,
+  "cited": [
+   "3-1-3",
+   "2-13-3"
+  ],
+  "retrieved": [
+   "3-1-3",
+   "2-13-3",
+   "3-1-1",
+   "3-1-4",
+   "3-1-2"
+  ],
+  "usage": {
+   "input_tokens": 919,
+   "cached_input_tokens": 512,
+   "output_tokens": 135,
+   "cost_usd": 0.00028717200000000003
+  },
+  "pass": true
+ },
+ {
+  "id": "h-M5-en",
+  "lang": "en",
+  "category": "multi",
+  "question": "What do the controls require for remote access: both for logging in and for keeping records?",
+  "control_ids": [
+   "2-2-3",
+   "2-12-3"
+  ],
+  "evidence": {
+   "2-2-3": "for remote access and for privileged accounts",
+   "2-12-3": "as well as for remote access events within the entity"
+  },
+  "answer": "Remote access events must have cybersecurity event logs activated [2-12-3-2], and multi-factor authentication must be applied for remote access based on the impact assessment of authentication failure and bypass [2-2-3-2]. Logs must be continuously monitored [2-12-3-4] and retained for at least 12 months [2-12-3-5].",
+  "refused": false,
+  "cited": [
+   "2-12-3",
+   "2-2-3"
+  ],
+  "retrieved": [
+   "2-12-3",
+   "2-2-3",
+   "2-5-3",
+   "2-14-3",
+   "2-12-2"
+  ],
+  "usage": {
+   "input_tokens": 1168,
+   "cached_input_tokens": 384,
+   "output_tokens": 79,
+   "cost_usd": 0.00033230399999999995
+  },
+  "pass": true
+ },
+ {
+  "id": "h-M5-ar",
+  "lang": "ar",
+  "category": "multi",
+  "question": "ما المطلوب في الدخول عن بعد، سواء لتسجيل الدخول أو لحفظ السجلات؟",
+  "control_ids": [
+   "2-2-3",
+   "2-12-3"
+  ],
+  "evidence": {
+   "2-2-3": "وذلك لعمليات الدخول عن بعد والحسابات ذات الصلاحيات الهامة والحساسة",
+   "2-12-3": "وأحداث عمليات الدخول عن بعد لدى الجهة"
+  },
+  "answer": "يجب تفعيل سجلات الأحداث الخاصة بأحداث عمليات الدخول عن بعد لدى الجهة [2-12-3-2]، مع تطبيق التحقق متعدد العناصر لعمليات الدخول عن بعد بناءً على نتائج تقييم الأثر المحتمل لفشل عملية التحقق وتخطيها [2-2-3-2].",
+  "refused": false,
+  "cited": [
+   "2-12-3",
+   "2-2-3"
+  ],
+  "retrieved": [
+   "2-12-3",
+   "2-2-3",
+   "2-14-3",
+   "2-6-3",
+   "2-2-1"
+  ],
+  "usage": {
+   "input_tokens": 1504,
+   "cached_input_tokens": 384,
+   "output_tokens": 82,
+   "cost_usd": 0.00043670399999999994
+  },
+  "pass": true
+ },
+ {
+  "id": "h-B1-en",
+  "lang": "en",
+  "category": "buried",
+  "question": "What does ECC require regarding SIEM?",
+  "control_ids": [
+   "2-12-3"
+  ],
+  "evidence": {
+   "2-12-3": "Security Information and Event Management (SIEM)"
+  },
+  "answer": "SIEM techniques required for collecting cybersecurity event logs must be identified [2-12-3-3], and cybersecurity event logs must be continuously monitored [2-12-3-4] and retained for at least 12 months [2-12-3-5].",
+  "refused": false,
+  "cited": [
+   "2-12-3"
+  ],
+  "retrieved": [
+   "2-12-3",
+   "2-3-3",
+   "4-1-3",
+   "1-6-3",
+   "4-1-2"
+  ],
+  "usage": {
+   "input_tokens": 1024,
+   "cached_input_tokens": 256,
+   "output_tokens": 55,
+   "cost_usd": 0.000297936
+  },
+  "pass": true
+ },
+ {
+  "id": "h-B1-ar",
+  "lang": "ar",
+  "category": "buried",
+  "question": "ماذا تتطلب الضوابط بشأن تقنيات إدارة المعلومات والأحداث الأمنية؟",
+  "control_ids": [
+   "2-12-3"
+  ],
+  "evidence": {
+   "2-12-3": "تحديد التقنيات اللازمة (SIEM) لجمع سجلات الأحداث"
+  },
+  "answer": "تتطلب الضوابط تحديد التقنيات اللازمة لجمع سجلات الأحداث الخاصة بالأمن السيبراني مثل أنظمة إدارة المعلومات والأحداث الأمنية (SIEM) [2-12-3-3]، مع المراقبة المستمرة لهذه السجلات [2-12-3-4] والاحتفاظ بها لمدة لا تقل عن ١٢ شهرًا [2-12-3-5].",
+  "refused": false,
+  "cited": [
+   "2-12-3"
+  ],
+  "retrieved": [
+   "2-13-3",
+   "2-12-3",
+   "1-6-2",
+   "1-6-1",
+   "1-6-3"
+  ],
+  "usage": {
+   "input_tokens": 1311,
+   "cached_input_tokens": 640,
+   "output_tokens": 97,
+   "cost_usd": 0.00032154
+  },
+  "pass": true
+ },
+ {
+  "id": "h-B2-en",
+  "lang": "en",
+  "category": "buried",
+  "question": "Do we have to protect ourselves against distributed denial of service attacks?",
+  "control_ids": [
+   "2-5-3"
+  ],
+  "evidence": {
+   "2-5-3": "Protecting against Distributed Denial of Service (DDoS) attacks"
+  },
+  "answer": "Yes, protection against Distributed Denial of Service (DDoS) attacks is required to limit the risks arising from these attacks [2-5-3-9].",
+  "refused": false,
+  "cited": [
+   "2-5-3"
+  ],
+  "retrieved": [
+   "2-5-3",
+   "2-4-3",
+   "2-6-3",
+   "1-10-3",
+   "2-15-3"
+  ],
+  "usage": {
+   "input_tokens": 1211,
+   "cached_input_tokens": 384,
+   "output_tokens": 33,
+   "cost_usd": 0.000290004
+  },
+  "pass": true
+ },
+ {
+  "id": "h-B2-ar",
+  "lang": "ar",
+  "category": "buried",
+  "question": "هل يجب الحماية من هجمات تعطيل الخدمة الموزعة؟",
+  "control_ids": [
+   "2-5-3"
+  ],
+  "evidence": {
+   "2-5-3": "الحماية من هجمات تعطيل الشبكات"
+  },
+  "answer": "نعم، يجب توفير الحماية من هجمات تعطيل الشبكات (DDoS) للحد من المخاطر السيبرانية الناتجة عنها [2-5-3-9].",
+  "refused": false,
+  "cited": [
+   "2-5-3"
+  ],
+  "retrieved": [
+   "2-5-3",
+   "4-2-3",
+   "2-3-3",
+   "4-1-2",
+   "2-4-3"
+  ],
+  "usage": {
+   "input_tokens": 1980,
+   "cached_input_tokens": 640,
+   "output_tokens": 43,
+   "cost_usd": 0.00045744
+  },
+  "pass": true
+ },
+ {
+  "id": "h-B3-en",
+  "lang": "en",
+  "category": "buried",
+  "question": "Is there a rule for destroying paper documents and storage media that held classified information?",
+  "control_ids": [
+   "2-14-3"
+  ],
+  "evidence": {
+   "2-14-3": "Security of the destruction and re-use of physical assets that hold classified information"
+  },
+  "answer": "Yes, the controls require security of the destruction and re-use of physical assets that hold classified information, including paper documents and storage media [2-14-3-4].",
+  "refused": false,
+  "cited": [
+   "2-14-3"
+  ],
+  "retrieved": [
+   "2-14-3",
+   "2-3-3",
+   "2-6-3",
+   "2-8-3",
+   "2-7-1"
+  ],
+  "usage": {
+   "input_tokens": 1022,
+   "cached_input_tokens": 768,
+   "output_tokens": 35,
+   "cost_usd": 0.000122808
+  },
+  "pass": true
+ },
+ {
+  "id": "h-B3-ar",
+  "lang": "ar",
+  "category": "buried",
+  "question": "كيف نتخلص من الأوراق والأقراص التي كانت تحتوي على معلومات سرية؟",
+  "control_ids": [
+   "2-14-3"
+  ],
+  "evidence": {
+   "2-14-3": "أمن إتلاف وإعادة استخدام الأصول المادية التي تحوي معلومات مصنفة"
+  },
+  "answer": "يجب تغطية أمن إتلاف وإعادة استخدام الأصول المادية التي تحوي معلومات مصنفة، بما يشمل الوثائق الورقية ووسائط الحفظ والتخزين [2-14-3].",
+  "refused": false,
+  "cited": [
+   "2-14-3"
+  ],
+  "retrieved": [
+   "2-14-3",
+   "4-1-2",
+   "2-6-3",
+   "2-7-1",
+   "2-3-3"
+  ],
+  "usage": {
+   "input_tokens": 1384,
+   "cached_input_tokens": 384,
+   "output_tokens": 51,
+   "cost_usd": 0.00036350399999999995
+  },
+  "pass": true
+ },
+ {
+  "id": "h-B4-en",
+  "lang": "en",
+  "category": "buried",
+  "question": "Are USB drives and other removable storage allowed?",
+  "control_ids": [
+   "2-3-3"
+  ],
+  "evidence": {
+   "2-3-3": "Strict restriction on the use of external storage media"
+  },
+  "answer": "Strict restrictions apply to the use of external storage media, and their security must be managed [2-3-3-2]. Physical assets holding classified information, including storage media, must be securely destroyed and re-used [2-14-3-4].",
+  "refused": false,
+  "cited": [
+   "2-3-3",
+   "2-14-3"
+  ],
+  "retrieved": [
+   "2-3-3",
+   "2-6-3",
+   "2-14-3",
+   "2-6-2",
+   "2-6-1"
+  ],
+  "usage": {
+   "input_tokens": 892,
+   "cached_input_tokens": 256,
+   "output_tokens": 53,
+   "cost_usd": 0.00025593599999999996
+  },
+  "pass": true
+ },
+ {
+  "id": "h-B4-ar",
+  "lang": "ar",
+  "category": "buried",
+  "question": "هل يُسمح باستخدام الفلاشات ووسائط التخزين القابلة للإزالة؟",
+  "control_ids": [
+   "2-3-3"
+  ],
+  "evidence": {
+   "2-3-3": "التقييد الحازم لاستخدام أجهزة وسائط التخزين الخارجية"
+  },
+  "answer": "نعم، يُسمح باستخدامها ولكن بشكل مقيد وحازم، إذ يجب أن تغطي متطلبات الأمن السيبراني التقييد الحازم لاستخدام أجهزة وسائط التخزين الخارجية والأمن المتعلق بها [2-3-3-2].",
+  "refused": false,
+  "cited": [
+   "2-3-3"
+  ],
+  "retrieved": [
+   "2-3-3",
+   "2-14-3",
+   "2-6-3",
+   "2-9-3",
+   "2-6-2"
+  ],
+  "usage": {
+   "input_tokens": 1316,
+   "cached_input_tokens": 384,
+   "output_tokens": 63,
+   "cost_usd": 0.0003575039999999999
+  },
+  "pass": true
+ },
+ {
+  "id": "h-B5-en",
+  "lang": "en",
+  "category": "buried",
+  "question": "Do we have to follow alerts about newly discovered security weaknesses?",
+  "control_ids": [
+   "2-10-3"
+  ],
+  "evidence": {
+   "2-10-3": "Communication and subscription with trusted resources"
+  },
+  "answer": "Yes, you must communicate and subscribe with trusted resources for new and up-to-date vulnerabilities [2-10-3-5], and remediate vulnerabilities based on their classification and associated cyber risks [2-10-3-3].",
+  "refused": false,
+  "cited": [
+   "2-10-3"
+  ],
+  "retrieved": [
+   "2-10-3",
+   "2-13-3",
+   "1-10-3",
+   "2-12-3",
+   "1-3-4"
+  ],
+  "usage": {
+   "input_tokens": 900,
+   "cached_input_tokens": 256,
+   "output_tokens": 47,
+   "cost_usd": 0.000251136
+  },
+  "pass": true
+ },
+ {
+  "id": "h-B5-ar",
+  "lang": "ar",
+  "category": "buried",
+  "question": "هل يجب متابعة التنبيهات عن الثغرات الجديدة؟",
+  "control_ids": [
+   "2-10-3"
+  ],
+  "evidence": {
+   "2-10-3": "التواصل والاشتراك مع مصادر موثوقة"
+  },
+  "answer": "نعم، يجب التواصل والاشتراك مع مصادر موثوقة فيما يتعلق بالتنبيهات المتعلقة بالثغرات الجديدة والمحدثة [2-10-3-5].",
+  "refused": false,
+  "cited": [
+   "2-10-3"
+  ],
+  "retrieved": [
+   "2-10-3",
+   "2-10-4",
+   "2-10-2",
+   "1-6-2",
+   "2-10-1"
+  ],
+  "usage": {
+   "input_tokens": 859,
+   "cached_input_tokens": 384,
+   "output_tokens": 44,
+   "cost_usd": 0.000197604
+  },
+  "pass": true
+ },
+ {
+  "id": "h-B6-en",
+  "lang": "en",
+  "category": "buried",
+  "question": "Can wireless networks be linked to the internal network?",
+  "control_ids": [
+   "2-5-3"
+  ],
+  "evidence": {
+   "2-5-3": "avoiding the connection of wireless networks to the entity’s internal network"
+  },
+  "answer": "Wireless networks may only be connected to the entity's internal network after a comprehensive assessment of the resulting risks, with those risks handled in a way that protects the entity's technology assets [2-5-3-4].",
+  "refused": false,
+  "cited": [
+   "2-5-3"
+  ],
+  "retrieved": [
+   "2-5-3",
+   "2-6-1",
+   "2-5-2",
+   "2-5-1",
+   "1-2-1"
+  ],
+  "usage": {
+   "input_tokens": 827,
+   "cached_input_tokens": 384,
+   "output_tokens": 45,
+   "cost_usd": 0.000189204
+  },
+  "pass": true
+ },
+ {
+  "id": "h-B6-ar",
+  "lang": "ar",
+  "category": "buried",
+  "question": "هل يجوز ربط الشبكة اللاسلكية بالشبكة الداخلية للجهة؟",
+  "control_ids": [
+   "2-5-3"
+  ],
+  "evidence": {
+   "2-5-3": "عدم ربط الشبكات اللاسلكية بشبكة الجهة الداخلية"
+  },
+  "answer": "نعم، يجوز ربط الشبكات اللاسلكية بشبكة الجهة الداخلية، ولكن فقط بناءً على دراسة متكاملة للمخاطر المترتبة على ذلك والتعامل معها بما يضمن حماية الأصول التقنية للجهة، مع حماية الشبكات اللاسلكية بوسائل آمنة للتحقق من الهوية والتشفير [2-5-3-4].",
+  "refused": false,
+  "cited": [
+   "2-5-3"
+  ],
+  "retrieved": [
+   "2-5-3",
+   "4-2-3",
+   "2-5-2",
+   "1-1-1",
+   "4-1-2"
+  ],
+  "usage": {
+   "input_tokens": 1486,
+   "cached_input_tokens": 896,
+   "output_tokens": 90,
+   "cost_usd": 0.00029037599999999996
+  },
+  "pass": true
+ },
+ {
+  "id": "h-C1-en",
+  "lang": "en",
+  "category": "colloquial",
+  "question": "Can employees use their personal phones for work?",
+  "control_ids": [
+   "2-6-3"
+  ],
+  "evidence": {
+   "2-6-3": "mobile devices and BYOD security"
+  },
+  "answer": "Yes, personal phones (BYOD) may be used, subject to cybersecurity requirements that are identified, documented, and approved when connected to the entity's network [2-6-1] and implemented [2-6-2], including separation and encryption of entity data, controlled and restricted use, deletion of entity data on device loss or termination, and user security awareness [2-6-3].",
+  "refused": false,
+  "cited": [
+   "2-6-3",
+   "2-6-2",
+   "2-6-1"
+  ],
+  "retrieved": [
+   "2-6-3",
+   "2-6-2",
+   "2-6-1",
+   "1-9-4",
+   "2-6-4"
+  ],
+  "usage": {
+   "input_tokens": 678,
+   "cached_input_tokens": 256,
+   "output_tokens": 81,
+   "cost_usd": 0.00022533600000000003
+  },
+  "pass": true
+ },
+ {
+  "id": "h-C1-ar",
+  "lang": "ar",
+  "category": "colloquial",
+  "question": "هل يمكن للموظفين استخدام هواتفهم الشخصية في العمل؟",
+  "control_ids": [
+   "2-6-3"
+  ],
+  "evidence": {
+   "2-6-3": "الأجهزة المحمولة وأجهزة (BYOD)"
+  },
+  "answer": "نعم، يمكن ذلك ضمن ضوابط أمن الأجهزة المحمولة وأجهزة (BYOD) التي يجب تحديدها وتوثيقها واعتمادها عند ارتباطها بشبكة الجهة [2-6-1] وتطبيقها [2-6-2]، على أن تشمل كحد أدنى فصل وتشفير بيانات الجهة المخزنة عليها [2-6-3-1]، والاستخدام المحدد والمقيد [2-6-3-2]، وحذف بيانات الجهة عند فقدان الجهاز أو انتهاء العلاقة الوظيفية [2-6-3-3]، والتوعية الأمنية للمستخدمين [2-6-3-4].",
+  "refused": false,
+  "cited": [
+   "2-6-1",
+   "2-6-3",
+   "2-6-2"
+  ],
+  "retrieved": [
+   "2-6-1",
+   "2-6-3",
+   "2-6-2",
+   "2-6-4",
+   "1-9-1"
+  ],
+  "usage": {
+   "input_tokens": 834,
+   "cached_input_tokens": 512,
+   "output_tokens": 160,
+   "cost_usd": 0.00029167200000000004
+  },
+  "pass": true
+ },
+ {
+  "id": "h-C2-en",
+  "lang": "en",
+  "category": "colloquial",
+  "question": "Do we need a plan for the case where our main data centre is lost?",
+  "control_ids": [
+   "3-1-3"
+  ],
+  "evidence": {
+   "3-1-3": "Developing disaster recovery plans"
+  },
+  "answer": "Yes. You must develop disaster recovery plans [3-1-3-3] and plans for responding to cybersecurity incidents that may affect business continuity [3-1-3-2], ensuring continuity of cybersecurity systems and procedures [3-1-3-1].",
+  "refused": false,
+  "cited": [
+   "3-1-3"
+  ],
+  "retrieved": [
+   "2-14-3",
+   "3-1-3",
+   "2-6-3",
+   "2-9-3",
+   "4-2-3"
+  ],
+  "usage": {
+   "input_tokens": 1012,
+   "cached_input_tokens": 256,
+   "output_tokens": 54,
+   "cost_usd": 0.000293136
+  },
+  "pass": true
+ },
+ {
+  "id": "h-C2-ar",
+  "lang": "ar",
+  "category": "colloquial",
+  "question": "هل نحتاج إلى خطة لحالة فقدان مركز البيانات الرئيسي؟",
+  "control_ids": [
+   "3-1-3"
+  ],
+  "evidence": {
+   "3-1-3": "وضع خطط التعافي من الكوارث"
+  },
+  "answer": "نعم، يجب وضع خطط التعافي من الكوارث (Disaster Recovery Plan) [3-1-3-3]، مع ضمان القدرة السريعة على استعادة البيانات والأنظمة بعد الحوادث [2-9-3-2] وفحص فعالية الاستعادة دوريًا [2-9-3-3].",
+  "refused": false,
+  "cited": [
+   "3-1-3",
+   "2-9-3"
+  ],
+  "retrieved": [
+   "2-14-3",
+   "2-6-3",
+   "3-1-3",
+   "2-9-3",
+   "2-13-3"
+  ],
+  "usage": {
+   "input_tokens": 1351,
+   "cached_input_tokens": 384,
+   "output_tokens": 77,
+   "cost_usd": 0.00038480399999999993
+  },
+  "pass": true
+ },
+ {
+  "id": "h-C3-en",
+  "lang": "en",
+  "category": "colloquial",
+  "question": "Do we need to run simulated attacks against our public website?",
+  "control_ids": [
+   "2-11-3"
+  ],
+  "evidence": {
+   "2-11-3": "Scope of penetration testing to include all externally provided services"
+  },
+  "answer": "Yes, penetration testing must cover all externally provided services, including websites and web applications, and must be conducted periodically [2-11-3-1] [2-11-3-2]. External web applications must also be protected with a web application firewall and secure protocols such as HTTPS [2-15-3-1] [2-15-3-3].",
+  "refused": false,
+  "cited": [
+   "2-15-3",
+   "2-11-3"
+  ],
+  "retrieved": [
+   "2-5-3",
+   "2-15-3",
+   "2-11-3",
+   "2-15-2",
+   "2-15-4"
+  ],
+  "usage": {
+   "input_tokens": 924,
+   "cached_input_tokens": 384,
+   "output_tokens": 76,
+   "cost_usd": 0.00025550400000000004
+  },
+  "pass": true
+ },
+ {
+  "id": "h-C3-ar",
+  "lang": "ar",
+  "category": "colloquial",
+  "question": "هل يجب إجراء هجمات تجريبية على موقعنا الإلكتروني المتاح للعامة؟",
+  "control_ids": [
+   "2-11-3"
+  ],
+  "evidence": {
+   "2-11-3": "نطاق عمل اختبار الاختراق، ليشمل جميع الخدمات المقدمة خارجياً"
+  },
+  "answer": "نعم، يجب أن يغطي نطاق اختبار الاختراق جميع الخدمات المقدمة خارجياً عن طريق الإنترنت ومنها المواقع الإلكترونية، وأن يُجرى اختبار الاختراق دورياً [2-11-3].",
+  "refused": false,
+  "cited": [
+   "2-11-3"
+  ],
+  "retrieved": [
+   "2-11-3",
+   "2-15-2",
+   "2-15-3",
+   "2-15-4",
+   "2-15-1"
+  ],
+  "usage": {
+   "input_tokens": 896,
+   "cached_input_tokens": 256,
+   "output_tokens": 54,
+   "cost_usd": 0.000258336
+  },
+  "pass": true
+ },
+ {
+  "id": "h-C4-en",
+  "lang": "en",
+  "category": "colloquial",
+  "question": "Do the entry logs and recordings of the security cameras need protecting too?",
+  "control_ids": [
+   "2-14-3"
+  ],
+  "evidence": {
+   "2-14-3": "Protection of access and monitoring log information"
+  },
+  "answer": "Yes. Protection of access and monitoring log information, including CCTV logs, is required as part of physical security [2-14-3-2] [2-14-3-3].",
+  "refused": false,
+  "cited": [
+   "2-14-3"
+  ],
+  "retrieved": [
+   "2-14-3",
+   "2-12-2",
+   "2-12-3",
+   "2-12-1",
+   "2-12-4"
+  ],
+  "usage": {
+   "input_tokens": 796,
+   "cached_input_tokens": 256,
+   "output_tokens": 39,
+   "cost_usd": 0.00021033600000000001
+  },
+  "pass": true
+ },
+ {
+  "id": "h-C4-ar",
+  "lang": "ar",
+  "category": "colloquial",
+  "question": "هل يجب حماية تسجيلات كاميرات المراقبة وسجلات الدخول نفسها؟",
+  "control_ids": [
+   "2-14-3"
+  ],
+  "evidence": {
+   "2-14-3": "حماية معلومات سجلات الدخول والمراقبة"
+  },
+  "answer": "نعم، يجب حماية معلومات سجلات الدخول والمراقبة (CCTV) ضمن متطلبات الأمن المادي [2-14-3-2]، بما في ذلك حماية معلومات هذه السجلات [2-14-3-3].",
+  "refused": false,
+  "cited": [
+   "2-14-3"
+  ],
+  "retrieved": [
+   "2-14-3",
+   "2-12-3",
+   "2-3-3",
+   "2-3-1",
+   "2-12-2"
+  ],
+  "usage": {
+   "input_tokens": 1270,
+   "cached_input_tokens": 384,
+   "output_tokens": 58,
+   "cost_usd": 0.000337704
+  },
+  "pass": true
+ },
+ {
+  "id": "h-X1-ar",
+  "lang": "ar",
+  "category": "mixed",
+  "route": "auto",
+  "question": "ما المطلوب بخصوص الـ MFA للدخول عن بعد؟",
+  "control_ids": [
+   "2-2-3"
+  ],
+  "evidence": {
+   "2-2-3": "التحقق من الهوية متعدد العناصر"
+  },
+  "answer": "يجب استخدام التحقق متعدد العناصر (MFA) لعمليات الدخول عن بعد، مع تحديد عناصر التحقق المناسبة وعددها وتقنياتها بناءً على نتائج تقييم الأثر المحتمل لفشل عملية التحقق وتخطيها [2-2-3-2].",
+  "refused": false,
+  "cited": [
+   "2-2-3"
+  ],
+  "retrieved": [
+   "2-2-3",
+   "4-1-3",
+   "2-11-3",
+   "2-5-3",
+   "2-15-3"
+  ],
+  "usage": {
+   "input_tokens": 1760,
+   "cached_input_tokens": 384,
+   "output_tokens": 70,
+   "cost_usd": 0.000499104
+  },
+  "pass": true
+ },
+ {
+  "id": "h-X2-ar",
+  "lang": "ar",
+  "category": "mixed",
+  "route": "auto",
+  "question": "هل نحتاج SIEM لتجميع السجلات؟",
+  "control_ids": [
+   "2-12-3"
+  ],
+  "evidence": {
+   "2-12-3": "تحديد التقنيات اللازمة (SIEM) لجمع سجلات الأحداث"
+  },
+  "answer": "نعم، يجب تحديد التقنيات اللازمة لجمع سجلات الأحداث الخاصة بالأمن السيبراني، ومنها تقنيات (SIEM) [2-12-3-3]، مع تفعيل سجلات الأحداث على الأصول الحساسة والحسابات ذات الصلاحيات الهامة وأحداث الدخول عن بعد [2-12-3-1] [2-12-3-2].",
+  "refused": false,
+  "cited": [
+   "2-12-3"
+  ],
+  "retrieved": [
+   "2-12-3",
+   "2-12-1",
+   "2-12-2",
+   "2-12-4",
+   "2-3-3"
+  ],
+  "usage": {
+   "input_tokens": 1063,
+   "cached_input_tokens": 384,
+   "output_tokens": 95,
+   "cost_usd": 0.00032000400000000003
+  },
+  "pass": true
+ },
+ {
+  "id": "h-X3-ar",
+  "lang": "ar",
+  "category": "mixed",
+  "route": "auto",
+  "question": "هل يجب الحماية من هجمات DDoS؟",
+  "control_ids": [
+   "2-5-3"
+  ],
+  "evidence": {
+   "2-5-3": "الحماية من هجمات تعطيل الشبكات"
+  },
+  "answer": "نعم، يجب توفير الحماية من هجمات تعطيل الشبكات (DDoS) للحد من المخاطر السيبرانية الناتجة عنها [2-5-3-9].",
+  "refused": false,
+  "cited": [
+   "2-5-3"
+  ],
+  "retrieved": [
+   "2-5-3",
+   "2-3-3",
+   "2-3-2",
+   "2-7-1",
+   "2-4-3"
+  ],
+  "usage": {
+   "input_tokens": 1628,
+   "cached_input_tokens": 896,
+   "output_tokens": 43,
+   "cost_usd": 0.000276576
+  },
+  "pass": true
+ },
+ {
+  "id": "h-X4-ar",
+  "lang": "ar",
+  "category": "mixed",
+  "route": "auto",
+  "question": "ما متطلبات الـ Patch Management؟",
+  "control_ids": [
+   "2-3-3",
+   "2-10-3"
+  ],
+  "evidence": {
+   "2-3-3": "إدارة حزم التحديثات والإصلاحات للأنظمة والتطبيقات والأجهزة",
+   "2-10-3": "إدارة حزم التحديثات والإصلاحات الأمنية لمعالجة الثغرات"
+  },
+  "answer": "تتضمن متطلبات إدارة حزم التحديثات والإصلاحات إدارتها للأنظمة والتطبيقات والأجهزة [2-3-3-3]، وإدارتها الأمنية لمعالجة الثغرات مع التحقق من سلامتها وفعاليتها على بيئة غير بيئة الإنتاج قبل تطبيقها [2-10-3-4].",
+  "refused": false,
+  "cited": [
+   "2-3-3",
+   "2-10-3"
+  ],
+  "retrieved": [
+   "2-3-3",
+   "2-9-3",
+   "2-10-3",
+   "2-9-2",
+   "2-9-1"
+  ],
+  "usage": {
+   "input_tokens": 1083,
+   "cached_input_tokens": 384,
+   "output_tokens": 84,
+   "cost_usd": 0.00031280399999999997
+  },
+  "pass": true
+ },
+ {
+  "id": "h-X5-ar",
+  "lang": "ar",
+  "category": "mixed",
+  "route": "auto",
+  "question": "هل يلزم WAF للتطبيقات الخارجية؟",
+  "control_ids": [
+   "2-15-3"
+  ],
+  "evidence": {
+   "2-15-3": "استخدام جدار الحماية لتطبيقات الويب"
+  },
+  "answer": "نعم، يجب أن تغطي متطلبات الأمن السيبراني لحماية تطبيقات الويب الخارجية استخدام جدار الحماية لتطبيقات الويب (WAF) كحد أدنى [2-15-3-1]، على أن تُطبَّق هذه المتطلبات على تطبيقات الويب الخارجية للجهة [2-15-2].",
+  "refused": false,
+  "cited": [
+   "2-15-3",
+   "2-15-2"
+  ],
+  "retrieved": [
+   "2-15-3",
+   "2-15-2",
+   "2-15-1",
+   "4-1-3",
+   "2-11-3"
+  ],
+  "usage": {
+   "input_tokens": 1024,
+   "cached_input_tokens": 512,
+   "output_tokens": 81,
+   "cost_usd": 0.00025387200000000004
+  },
+  "pass": true
+ },
+ {
+  "id": "h-X6-ar",
+  "lang": "ar",
+  "category": "mixed",
+  "route": "auto",
+  "question": "هل يجب وجود DR plan؟",
+  "control_ids": [
+   "3-1-3"
+  ],
+  "evidence": {
+   "3-1-3": "وضع خطط التعافي من الكوارث"
+  },
+  "answer": "نعم، يجب وضع خطط التعافي من الكوارث (Disaster Recovery Plan) ضمن ما تغطيه إدارة استمرارية الأعمال [3-1-3-3]، مع ضمان القدرة السريعة على استعادة البيانات والأنظمة بعد حوادث الأمن السيبراني [2-9-3-2].",
+  "refused": false,
+  "cited": [
+   "3-1-3",
+   "2-9-3"
+  ],
+  "retrieved": [
+   "3-1-3",
+   "2-9-3",
+   "1-6-2",
+   "2-10-3",
+   "2-5-3"
+  ],
+  "usage": {
+   "input_tokens": 1508,
+   "cached_input_tokens": 256,
+   "output_tokens": 74,
+   "cost_usd": 0.00046593599999999997
+  },
+  "pass": true
+ }
+]

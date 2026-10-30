@@ -36,7 +36,11 @@ jobs:
         run: python ingest.py
         env:
           HF_HUB_OFFLINE: "1"
+      - name: Unit tests (no models)
+        run: python test_search.py
       - name: Retrieval eval (free)
-        run: python eval.py --retrieval-only
+        run: |
+          python eval.py --retrieval-only
+          python eval.py --retrieval-only --file eval_hard.json
         env:
           HF_HUB_OFFLINE: "1"

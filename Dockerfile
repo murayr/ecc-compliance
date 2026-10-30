@@ -19,7 +19,7 @@ ENV HF_HUB_OFFLINE=1
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-COPY ingest.py rag.py api.py ./
+COPY ingest.py rag.py search.py api.py ./
 COPY data/ data/
 # Build the index at image build time, so container startup is fast.
 RUN python ingest.py

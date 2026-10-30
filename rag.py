@@ -11,15 +11,11 @@ Usage:
     python rag.py --retrieve-only "..."      # show retrieved controls, no API call
 """
 import argparse
-import json
 import os
 import re
 import sys
-from functools import lru_cache
 
-import numpy as np
-
-from ingest import INDEX_DIR, get_model
+import search
 
 TOP_K = 5
 MODEL = os.environ.get("DEEPSEEK_MODEL", "deepseek-flash")
@@ -64,38 +60,30 @@ def is_refusal(answer, lang):
 
 # --------------------------------------------------------------------------- retrieval
 
-@lru_cache(maxsize=1)
-def load_index():
-    chunks = json.loads((INDEX_DIR / "chunks.json").read_text(encoding="utf-8"))
-    vectors = np.load(INDEX_DIR / "embeddings.npy")
-    owners = np.array(json.loads((INDEX_DIR / "units.json").read_text(encoding="utf-8")))
-    assert len(owners) == len(vectors), "index is stale: re-run ingest.py"
-    return chunks, vectors, owners
+# The index and the embedding model live in search.py; these names stay for api.py's start-up.
+load_index = search.index
+embedder = search.embedder
 
-
-@lru_cache(maxsize=1)
-def embedder():
-    return get_model()
+# How controls are found: see search.MODES. "dense" is the default until the ablation says otherwise.
+RETRIEVAL_MODE = os.environ.get("RETRIEVAL_MODE", "dense")
 
 
 def detect_language(text):
-    """'ar' if most letters are Arabic, else 'en'."""
-    letters = [ch for ch in text if ch.isalpha()]
-    arabic = sum(1 for ch in letters if ARABIC.match(ch))
-    return "ar" if letters and arabic / len(letters) > 0.5 else "en"
+    """'ar' if at least half of the words contain Arabic letters, else 'en'.
+
+    Words, not letters: an English term like "Patch Management" has more letters than the short Arabic
+    words around it, but the question is still Arabic. Ties go to Arabic (an Arabic-first product)."""
+    words = re.findall(r"[A-Za-z؀-ۿ]+", text)
+    arabic = sum(1 for w in words if ARABIC.search(w))
+    return "ar" if words and arabic * 2 >= len(words) else "en"
 
 
-def retrieve(question, k=TOP_K, lang=None):
-    """Return the k controls (in the question's language) most similar to the question."""
-    chunks, vectors, owners = load_index()
+def retrieve(question, k=TOP_K, lang=None, mode=None):
+    """Return the k best controls for the question, in the question's language."""
     lang = lang or detect_language(question)
-    q = embedder().encode([question], normalize_embeddings=True)[0]
-    unit_scores = vectors @ q                  # cosine similarity (vectors are normalised)
-    # A control's score is its best-matching unit (the whole control or one of its sub-clauses).
-    scores = np.full(len(chunks), -1.0)
-    np.maximum.at(scores, owners, unit_scores)
-    order = [i for i in np.argsort(-scores) if chunks[i]["lang"] == lang][:k]
-    return [{**chunks[i], "score": float(scores[i])} for i in order]
+    chunk = search.index().side[lang].chunk
+    ranked = search.rank(question, lang, mode or RETRIEVAL_MODE)[:k]
+    return [{**chunk[control_id], "score": float(score)} for control_id, score in ranked]
 
 
 # --------------------------------------------------------------------------- generation
