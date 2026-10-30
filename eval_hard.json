@@ -1,0 +1,582 @@
+[
+ {
+  "id": "h-L1-en",
+  "lang": "en",
+  "category": "lifecycle",
+  "question": "How often must the backup and recovery requirements be reviewed?",
+  "control_ids": [
+   "2-9-4"
+  ],
+  "evidence": {
+   "2-9-4": "shall be periodically reviewed"
+  }
+ },
+ {
+  "id": "h-L1-ar",
+  "lang": "ar",
+  "category": "lifecycle",
+  "question": "هل يجب مراجعة تطبيق متطلبات النسخ الاحتياطي؟",
+  "control_ids": [
+   "2-9-4"
+  ],
+  "evidence": {
+   "2-9-4": "يجب مراجعة تطبيق متطلبات الأمن السيبراني لإدارة النسخ الاحتياطية"
+  }
+ },
+ {
+  "id": "h-L2-en",
+  "lang": "en",
+  "category": "lifecycle",
+  "question": "Is it enough to write down the penetration testing requirements, or do the tests have to be carried out?",
+  "control_ids": [
+   "2-11-2"
+  ],
+  "evidence": {
+   "2-11-2": "shall be implemented"
+  }
+ },
+ {
+  "id": "h-L2-ar",
+  "lang": "ar",
+  "category": "lifecycle",
+  "question": "هل يكفي توثيق متطلبات اختبار الاختراق أم يجب تنفيذ الاختبارات فعلياً؟",
+  "control_ids": [
+   "2-11-2"
+  ],
+  "evidence": {
+   "2-11-2": "يجب تنفيذ عمليات اختبار الاختراق في الجهة"
+  }
+ },
+ {
+  "id": "h-L3-en",
+  "lang": "en",
+  "category": "lifecycle",
+  "question": "Do the cryptography requirements have to be documented and approved?",
+  "control_ids": [
+   "2-8-1"
+  ],
+  "evidence": {
+   "2-8-1": "shall be identified, documented, and approved"
+  }
+ },
+ {
+  "id": "h-L3-ar",
+  "lang": "ar",
+  "category": "lifecycle",
+  "question": "هل يجب توثيق واعتماد متطلبات التشفير؟",
+  "control_ids": [
+   "2-8-1"
+  ],
+  "evidence": {
+   "2-8-1": "يجب تحديد وتوثيق واعتماد متطلبات الأمن السيبراني للتشفير"
+  }
+ },
+ {
+  "id": "h-L4-en",
+  "lang": "en",
+  "category": "lifecycle",
+  "question": "Are the mobile device and BYOD security requirements reviewed on a regular basis?",
+  "control_ids": [
+   "2-6-4"
+  ],
+  "evidence": {
+   "2-6-4": "shall be periodically reviewed"
+  }
+ },
+ {
+  "id": "h-L4-ar",
+  "lang": "ar",
+  "category": "lifecycle",
+  "question": "هل تُراجع متطلبات أمن الأجهزة المحمولة والأجهزة الشخصية بشكل دوري؟",
+  "control_ids": [
+   "2-6-4"
+  ],
+  "evidence": {
+   "2-6-4": "يجب مراجعة تطبيق متطلبات الأمن السيبراني الخاصة لأمن الأجهزة المحمولة"
+  }
+ },
+ {
+  "id": "h-L5-en",
+  "lang": "en",
+  "category": "lifecycle",
+  "question": "How often should the cybersecurity requirements for third parties be reviewed?",
+  "control_ids": [
+   "4-1-4"
+  ],
+  "evidence": {
+   "4-1-4": "shall be periodically reviewed"
+  }
+ },
+ {
+  "id": "h-L5-ar",
+  "lang": "ar",
+  "category": "lifecycle",
+  "question": "ما دورية مراجعة متطلبات الأمن السيبراني للموردين والأطراف الخارجية؟",
+  "control_ids": [
+   "4-1-4"
+  ],
+  "evidence": {
+   "4-1-4": "يجب مراجعة متطلبات الأمن السيبراني مع الأطراف الخارجية دورياً"
+  }
+ },
+ {
+  "id": "h-M1-en",
+  "lang": "en",
+  "category": "multi",
+  "question": "What must our contract with a cloud hosting provider cover about data and confidentiality?",
+  "control_ids": [
+   "4-1-2",
+   "4-2-3"
+  ],
+  "evidence": {
+   "4-1-2": "Clauses of non-disclosure",
+   "4-2-3": "returning data (in a usable format) upon service completion"
+  }
+ },
+ {
+  "id": "h-M1-ar",
+  "lang": "ar",
+  "category": "multi",
+  "question": "ما الذي يجب أن يغطيه عقدنا مع مزود الاستضافة السحابية بشأن البيانات والسرية؟",
+  "control_ids": [
+   "4-1-2",
+   "4-2-3"
+  ],
+  "evidence": {
+   "4-1-2": "بنود المحافظة على سرية المعلومات",
+   "4-2-3": "وإعادتها للجهة (بصيغة قابلة للاستخدام) عند انتهاء الخدمة"
+  }
+ },
+ {
+  "id": "h-M2-en",
+  "lang": "en",
+  "category": "multi",
+  "question": "What do we need to protect company data held on staff phones, including encryption standards and key management?",
+  "control_ids": [
+   "2-6-3",
+   "2-8-3"
+  ],
+  "evidence": {
+   "2-6-3": "Separation and encryption of the entity’s data and information stored on mobile devices",
+   "2-8-3": "Secure management of cryptographic keys during their lifecycles"
+  }
+ },
+ {
+  "id": "h-M2-ar",
+  "lang": "ar",
+  "category": "multi",
+  "question": "ما المطلوب لحماية بيانات الجهة على هواتف الموظفين، بما في ذلك معايير التشفير وإدارة المفاتيح؟",
+  "control_ids": [
+   "2-6-3",
+   "2-8-3"
+  ],
+  "evidence": {
+   "2-6-3": "فصل وتشفير البيانات والمعلومات",
+   "2-8-3": "الإدارة الآمنة لمفاتيح التشفير"
+  }
+ },
+ {
+  "id": "h-M3-en",
+  "lang": "en",
+  "category": "multi",
+  "question": "What must happen to a leaver's system access and to company data on their personal devices?",
+  "control_ids": [
+   "1-9-5",
+   "2-6-3"
+  ],
+  "evidence": {
+   "1-9-5": "reviewed and revoked immediately upon the end/termination of their employment",
+   "2-6-3": "after the ending/termination of employment with the entity"
+  }
+ },
+ {
+  "id": "h-M3-ar",
+  "lang": "ar",
+  "category": "multi",
+  "question": "ماذا يجب أن يحدث لصلاحيات الموظف المغادر ولبيانات الجهة على أجهزته الشخصية؟",
+  "control_ids": [
+   "1-9-5",
+   "2-6-3"
+  ],
+  "evidence": {
+   "1-9-5": "مراجعة وإلغاء الصلاحيات للعاملين",
+   "2-6-3": "حذف البيانات والمعلومات (الخاصة بالجهة) المخزنة"
+  }
+ },
+ {
+  "id": "h-M4-en",
+  "lang": "en",
+  "category": "multi",
+  "question": "How do incident response plans fit with business continuity and disaster recovery?",
+  "control_ids": [
+   "2-13-3",
+   "3-1-3"
+  ],
+  "evidence": {
+   "2-13-3": "Cybersecurity incident response plans and escalation procedures",
+   "3-1-3": "Developing plans for response to cybersecurity incidents that may affect the entity’s business continuity"
+  }
+ },
+ {
+  "id": "h-M4-ar",
+  "lang": "ar",
+  "category": "multi",
+  "question": "كيف ترتبط خطط الاستجابة للحوادث باستمرارية الأعمال والتعافي من الكوارث؟",
+  "control_ids": [
+   "2-13-3",
+   "3-1-3"
+  ],
+  "evidence": {
+   "2-13-3": "وضع خطط الاستجابة للحوادث الأمنية وآليات التصعيد",
+   "3-1-3": "وضع خطط الاستجابة لحوادث الأمن السيبراني التي قد تؤثر على استمرارية أعمال الجهة"
+  }
+ },
+ {
+  "id": "h-M5-en",
+  "lang": "en",
+  "category": "multi",
+  "question": "What do the controls require for remote access: both for logging in and for keeping records?",
+  "control_ids": [
+   "2-2-3",
+   "2-12-3"
+  ],
+  "evidence": {
+   "2-2-3": "for remote access and for privileged accounts",
+   "2-12-3": "as well as for remote access events within the entity"
+  }
+ },
+ {
+  "id": "h-M5-ar",
+  "lang": "ar",
+  "category": "multi",
+  "question": "ما المطلوب في الدخول عن بعد، سواء لتسجيل الدخول أو لحفظ السجلات؟",
+  "control_ids": [
+   "2-2-3",
+   "2-12-3"
+  ],
+  "evidence": {
+   "2-2-3": "وذلك لعمليات الدخول عن بعد والحسابات ذات الصلاحيات الهامة والحساسة",
+   "2-12-3": "وأحداث عمليات الدخول عن بعد لدى الجهة"
+  }
+ },
+ {
+  "id": "h-B1-en",
+  "lang": "en",
+  "category": "buried",
+  "question": "What does ECC require regarding SIEM?",
+  "control_ids": [
+   "2-12-3"
+  ],
+  "evidence": {
+   "2-12-3": "Security Information and Event Management (SIEM)"
+  }
+ },
+ {
+  "id": "h-B1-ar",
+  "lang": "ar",
+  "category": "buried",
+  "question": "ماذا تتطلب الضوابط بشأن تقنيات إدارة المعلومات والأحداث الأمنية؟",
+  "control_ids": [
+   "2-12-3"
+  ],
+  "evidence": {
+   "2-12-3": "تحديد التقنيات اللازمة (SIEM) لجمع سجلات الأحداث"
+  }
+ },
+ {
+  "id": "h-B2-en",
+  "lang": "en",
+  "category": "buried",
+  "question": "Do we have to protect ourselves against distributed denial of service attacks?",
+  "control_ids": [
+   "2-5-3"
+  ],
+  "evidence": {
+   "2-5-3": "Protecting against Distributed Denial of Service (DDoS) attacks"
+  }
+ },
+ {
+  "id": "h-B2-ar",
+  "lang": "ar",
+  "category": "buried",
+  "question": "هل يجب الحماية من هجمات تعطيل الخدمة الموزعة؟",
+  "control_ids": [
+   "2-5-3"
+  ],
+  "evidence": {
+   "2-5-3": "الحماية من هجمات تعطيل الشبكات"
+  }
+ },
+ {
+  "id": "h-B3-en",
+  "lang": "en",
+  "category": "buried",
+  "question": "Is there a rule for destroying paper documents and storage media that held classified information?",
+  "control_ids": [
+   "2-14-3"
+  ],
+  "evidence": {
+   "2-14-3": "Security of the destruction and re-use of physical assets that hold classified information"
+  }
+ },
+ {
+  "id": "h-B3-ar",
+  "lang": "ar",
+  "category": "buried",
+  "question": "كيف نتخلص من الأوراق والأقراص التي كانت تحتوي على معلومات سرية؟",
+  "control_ids": [
+   "2-14-3"
+  ],
+  "evidence": {
+   "2-14-3": "أمن إتلاف وإعادة استخدام الأصول المادية التي تحوي معلومات مصنفة"
+  }
+ },
+ {
+  "id": "h-B4-en",
+  "lang": "en",
+  "category": "buried",
+  "question": "Are USB drives and other removable storage allowed?",
+  "control_ids": [
+   "2-3-3"
+  ],
+  "evidence": {
+   "2-3-3": "Strict restriction on the use of external storage media"
+  }
+ },
+ {
+  "id": "h-B4-ar",
+  "lang": "ar",
+  "category": "buried",
+  "question": "هل يُسمح باستخدام الفلاشات ووسائط التخزين القابلة للإزالة؟",
+  "control_ids": [
+   "2-3-3"
+  ],
+  "evidence": {
+   "2-3-3": "التقييد الحازم لاستخدام أجهزة وسائط التخزين الخارجية"
+  }
+ },
+ {
+  "id": "h-B5-en",
+  "lang": "en",
+  "category": "buried",
+  "question": "Do we have to follow alerts about newly discovered security weaknesses?",
+  "control_ids": [
+   "2-10-3"
+  ],
+  "evidence": {
+   "2-10-3": "Communication and subscription with trusted resources"
+  }
+ },
+ {
+  "id": "h-B5-ar",
+  "lang": "ar",
+  "category": "buried",
+  "question": "هل يجب متابعة التنبيهات عن الثغرات الجديدة؟",
+  "control_ids": [
+   "2-10-3"
+  ],
+  "evidence": {
+   "2-10-3": "التواصل والاشتراك مع مصادر موثوقة"
+  }
+ },
+ {
+  "id": "h-B6-en",
+  "lang": "en",
+  "category": "buried",
+  "question": "Can wireless networks be linked to the internal network?",
+  "control_ids": [
+   "2-5-3"
+  ],
+  "evidence": {
+   "2-5-3": "avoiding the connection of wireless networks to the entity’s internal network"
+  }
+ },
+ {
+  "id": "h-B6-ar",
+  "lang": "ar",
+  "category": "buried",
+  "question": "هل يجوز ربط الشبكة اللاسلكية بالشبكة الداخلية للجهة؟",
+  "control_ids": [
+   "2-5-3"
+  ],
+  "evidence": {
+   "2-5-3": "عدم ربط الشبكات اللاسلكية بشبكة الجهة الداخلية"
+  }
+ },
+ {
+  "id": "h-C1-en",
+  "lang": "en",
+  "category": "colloquial",
+  "question": "Can employees use their personal phones for work?",
+  "control_ids": [
+   "2-6-3"
+  ],
+  "evidence": {
+   "2-6-3": "mobile devices and BYOD security"
+  }
+ },
+ {
+  "id": "h-C1-ar",
+  "lang": "ar",
+  "category": "colloquial",
+  "question": "هل يمكن للموظفين استخدام هواتفهم الشخصية في العمل؟",
+  "control_ids": [
+   "2-6-3"
+  ],
+  "evidence": {
+   "2-6-3": "الأجهزة المحمولة وأجهزة (BYOD)"
+  }
+ },
+ {
+  "id": "h-C2-en",
+  "lang": "en",
+  "category": "colloquial",
+  "question": "Do we need a plan for the case where our main data centre is lost?",
+  "control_ids": [
+   "3-1-3"
+  ],
+  "evidence": {
+   "3-1-3": "Developing disaster recovery plans"
+  }
+ },
+ {
+  "id": "h-C2-ar",
+  "lang": "ar",
+  "category": "colloquial",
+  "question": "هل نحتاج إلى خطة لحالة فقدان مركز البيانات الرئيسي؟",
+  "control_ids": [
+   "3-1-3"
+  ],
+  "evidence": {
+   "3-1-3": "وضع خطط التعافي من الكوارث"
+  }
+ },
+ {
+  "id": "h-C3-en",
+  "lang": "en",
+  "category": "colloquial",
+  "question": "Do we need to run simulated attacks against our public website?",
+  "control_ids": [
+   "2-11-3"
+  ],
+  "evidence": {
+   "2-11-3": "Scope of penetration testing to include all externally provided services"
+  }
+ },
+ {
+  "id": "h-C3-ar",
+  "lang": "ar",
+  "category": "colloquial",
+  "question": "هل يجب إجراء هجمات تجريبية على موقعنا الإلكتروني المتاح للعامة؟",
+  "control_ids": [
+   "2-11-3"
+  ],
+  "evidence": {
+   "2-11-3": "نطاق عمل اختبار الاختراق، ليشمل جميع الخدمات المقدمة خارجياً"
+  }
+ },
+ {
+  "id": "h-C4-en",
+  "lang": "en",
+  "category": "colloquial",
+  "question": "Do the entry logs and recordings of the security cameras need protecting too?",
+  "control_ids": [
+   "2-14-3"
+  ],
+  "evidence": {
+   "2-14-3": "Protection of access and monitoring log information"
+  }
+ },
+ {
+  "id": "h-C4-ar",
+  "lang": "ar",
+  "category": "colloquial",
+  "question": "هل يجب حماية تسجيلات كاميرات المراقبة وسجلات الدخول نفسها؟",
+  "control_ids": [
+   "2-14-3"
+  ],
+  "evidence": {
+   "2-14-3": "حماية معلومات سجلات الدخول والمراقبة"
+  }
+ },
+ {
+  "id": "h-X1-ar",
+  "lang": "ar",
+  "category": "mixed",
+  "route": "auto",
+  "question": "ما المطلوب بخصوص الـ MFA للدخول عن بعد؟",
+  "control_ids": [
+   "2-2-3"
+  ],
+  "evidence": {
+   "2-2-3": "التحقق من الهوية متعدد العناصر"
+  }
+ },
+ {
+  "id": "h-X2-ar",
+  "lang": "ar",
+  "category": "mixed",
+  "route": "auto",
+  "question": "هل نحتاج SIEM لتجميع السجلات؟",
+  "control_ids": [
+   "2-12-3"
+  ],
+  "evidence": {
+   "2-12-3": "تحديد التقنيات اللازمة (SIEM) لجمع سجلات الأحداث"
+  }
+ },
+ {
+  "id": "h-X3-ar",
+  "lang": "ar",
+  "category": "mixed",
+  "route": "auto",
+  "question": "هل يجب الحماية من هجمات DDoS؟",
+  "control_ids": [
+   "2-5-3"
+  ],
+  "evidence": {
+   "2-5-3": "الحماية من هجمات تعطيل الشبكات"
+  }
+ },
+ {
+  "id": "h-X4-ar",
+  "lang": "ar",
+  "category": "mixed",
+  "route": "auto",
+  "question": "ما متطلبات الـ Patch Management؟",
+  "control_ids": [
+   "2-3-3",
+   "2-10-3"
+  ],
+  "evidence": {
+   "2-3-3": "إدارة حزم التحديثات والإصلاحات للأنظمة والتطبيقات والأجهزة",
+   "2-10-3": "إدارة حزم التحديثات والإصلاحات الأمنية لمعالجة الثغرات"
+  }
+ },
+ {
+  "id": "h-X5-ar",
+  "lang": "ar",
+  "category": "mixed",
+  "route": "auto",
+  "question": "هل يلزم WAF للتطبيقات الخارجية؟",
+  "control_ids": [
+   "2-15-3"
+  ],
+  "evidence": {
+   "2-15-3": "استخدام جدار الحماية لتطبيقات الويب"
+  }
+ },
+ {
+  "id": "h-X6-ar",
+  "lang": "ar",
+  "category": "mixed",
+  "route": "auto",
+  "question": "هل يجب وجود DR plan؟",
+  "control_ids": [
+   "3-1-3"
+  ],
+  "evidence": {
+   "3-1-3": "وضع خطط التعافي من الكوارث"
+  }
+ }
+]

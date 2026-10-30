@@ -1,12 +1,14 @@
 """Evaluate retrieval and answers against eval_set.json, per language.
 
-Row types in eval_set.json:
-- {"control_id": "2-2-3", ...}  answerable: the labelled control should be retrieved and cited
-- {"expect": "refusal", ...}    not covered by ECC: the answer must be exactly the refusal string
+Row types (eval_set.json, eval_hard.json):
+- {"control_id": "2-2-3", ...}       answerable: the labelled control should be retrieved and cited
+- {"control_ids": ["2-2-3", ...]}    answerable by several controls: ALL of them must be retrieved and cited
+- {"expect": "refusal", ...}         not covered by ECC: the answer must be exactly the refusal string
+- {"route": "auto", ...}             detect the question's language as production does (mixed Arabic/English)
 
 Metrics (per language):
-- retrieval@5:       labelled control is among the 5 retrieved controls (answerable rows)
-- citation accuracy: the answer cites the labelled control (answerable rows, needs the LLM API)
+- retrieval@5:       every labelled control is among the 5 retrieved controls (answerable rows)
+- citation accuracy: the answer cites every labelled control (answerable rows, needs the LLM API)
 - refusal accuracy:  the answer is exactly the refusal string (refusal rows, needs the API)
 - answer language:   the answer is in the question's language (answerable rows, needs the API)
 - citation precision (reported, not gated): share of cited controls that are the labelled one,
@@ -17,6 +19,8 @@ Exits with code 1 if any metric is below THRESHOLD, so CI fails on regressions.
 Usage:
     python eval.py --retrieval-only    # free: embeddings only, no API calls
     python eval.py                     # full: also calls DeepSeek for every question
+    python eval.py --file eval_hard.json --retrieval-only
+    RETRIEVAL_MODE=hybrid python eval.py ...    # how controls are found; see search.py
 """
 import argparse
 import json
@@ -59,12 +63,14 @@ def main():
         line = f"[{row.get('id', lang)}] "
 
         if not expects_refusal:
-            expected = row["control_id"]
-            retrieved = [c["id"] for c in retrieve(question, lang=lang)]
-            hit = expected in retrieved
+            expected = row.get("control_ids") or [row["control_id"]]
+            routed = None if row.get("route") == "auto" else lang      # None: detect the language, as production does
+            retrieved = [c["id"] for c in retrieve(question, lang=routed)]
+            hit = all(e in retrieved for e in expected)
             hits[(lang, "retrieval@5")].append(hit)
-            rank = retrieved.index(expected) + 1 if hit else "-"
-            line += f"{'OK  ' if hit else 'MISS'} rank={rank}  expected {expected:7} got {','.join(retrieved)}"
+            ranks = [retrieved.index(e) + 1 if e in retrieved else "-" for e in expected]
+            line += (f"{'OK  ' if hit else 'MISS'} ranks={','.join(map(str, ranks))}  "
+                     f"expected {','.join(expected):12} got {','.join(retrieved)}")
         else:
             line += "(refusal row)"
         line += f"  | {question[:70]}"
@@ -84,10 +90,10 @@ def main():
                 verdict = "refused OK" if ok else "ANSWERED (should refuse)"
             else:
                 cited = [c["id"] for c in result["cited"]]
-                cited_ok = expected in cited
+                cited_ok = all(e in cited for e in expected)
                 hits[(lang, "citation")].append(cited_ok)
                 if cited:
-                    precision[lang].append(cited.count(expected) / len(cited))
+                    precision[lang].append(sum(c in expected for c in cited) / len(cited))
                 same_language = result["refused"] or detect_language(result["answer"]) == lang
                 hits[(lang, "language")].append(same_language)
                 ok = cited_ok and same_language
@@ -110,7 +116,7 @@ def main():
         print(f"{lang}  {metric:12} {score:6.1%}  ({sum(values)}/{len(values)})")
     for lang, values in sorted(precision.items()):
         print(f"{lang}  {'precision':12} {sum(values) / len(values):6.1%}  "
-              f"(info, not gated: avg share of citations that are the labelled control)")
+              f"(info, not gated: avg share of citations that are labelled controls)")
     if args.save and records:
         json.dump(records, open(args.save, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
         print(f"saved {len(records)} rows to {args.save}")
